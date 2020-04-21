@@ -24,4 +24,4 @@ mvn clean package
 ```
 
 ## Our Team
-Yaeman, ..., ...
+이름 : 최예만, 김귀수, 김영진, 남광현
