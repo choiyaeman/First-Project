@@ -2,8 +2,9 @@
 메타빌드 제출용 프로젝트
 
 ## Description
-Smart HOME을 주제로 IoT 센서로 부터 실시간 데이터를 전송받아 대쉬보드를 꾸민다
+Smart HOME을 주제로 IoT 센서로 부터 실시간 데이터를 전송받아  대쉬보드를 꾸민다
 
+아두이노 라즈베리 연결 MongoDB 저장
 ## Functions
 - Admin (User MGMT, Settings)
 - Realtime Dashboard
