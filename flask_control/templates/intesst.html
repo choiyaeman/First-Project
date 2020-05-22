@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>HOME NETWORK</title>
+        
+        <style>
+            body{
+                background-color: rgb(88, 157, 221);
+
+                }
+        .container{
+            width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .main{
+            display: flex;
+        }
+        .main div {
+            flex:1;
+        }
+        .main div button{
+            background-color: rgb(000, 144, 100);
+            width: 150px;
+            height: 80px;
+            border-radius: 10px;
+        }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h2>LED Controller</h2>
+            </div>
+        
+            <div class="main">
+                <div>
+                    <button onclick="led_on()">LED ON</button>
+                </div>
+                <div>
+                    <button onclick="led_off()">LED OFF</button>
+                </div>                    
+            </div>
+                <div id="result">
+		<p>Hello</p>
+            </div>
+        </div>
+
+<div class="container">
+            <div class="header">
+                <h2>Moter Controller</h2>
+            </div>
+        
+            <div class="main">
+                <div>
+                    <button onclick="moter_on()">Moter ON</button>
+                </div>
+                <div>
+                    <button onclick="moter_off()">Moter OFF</button>
+                </div>                    
+            </div>
+                <div id="result1">
+		<p>yumyam</p>
+            </div>
+        </div>
+
+        <script>
+            function led_on(){
+                fetch("/led/on")
+                .then(response=> response.text())
+                .then(data=>{
+                    console.log(data);
+                    let result = document.querySelector("#result");
+                    if(data=="ok"){
+                        result.innerHTML = "<h1>LED is running</h1>";
+                    }else{
+                        result.innerHTML = "<h1>error</h1>";
+                    }
+                });
+            }
+            function led_off(){
+                fetch("/led/off")
+                .then(response=> response.text())
+                .then(data=>{
+                    console.log(data);
+                    let result = document.querySelector("#result");
+                    if(data=="ok"){
+                        result.innerHTML = "<h1>LED is stopping</h1>";
+                    }else{
+                        result.innerHTML = "<h1>error</h1>";
+                    }
+                });
+            }
+	
+
+	
+            function moter_off(){
+                fetch("/moter/off")
+                .then(response=> response.text())
+                .then(data=>{
+                    console.log(data);
+                    let result = document.querySelector("#result1");
+                    if(data=="ok"){
+                        result.innerHTML = "<h1>MOTER is stopping</h1>";
+                    }else{
+                        result.innerHTML = "<h1>error</h1>";
+                    }
+                });
+            }
+	
+            function moter_on(){
+                fetch("/moter/on")
+                .then(response=> response.text())
+                .then(data=>{
+                    console.log(data);
+                    let result = document.querySelector("#result1");
+                    if(data=="ok"){
+                        result.innerHTML = "<h1>MOTER is running</h1>";
+                    }else{
+                        result.innerHTML = "<h1>error</h1>";
+                    }
+                });
+            }
+
+
+        </script>
+
+    </body>
+</html>
+</DOCTYPE>
