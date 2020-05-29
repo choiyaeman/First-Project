@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { Chart } from 'react-chartjs-2';
 import { ThemeProvider } from '@material-ui/styles';
@@ -11,6 +11,7 @@ import 'react-perfect-scrollbar/dist/css/styles.css';
 import './assets/scss/index.scss';
 import validators from './common/validators';
 import Routes from './Routes';
+
 
 const browserHistory = createBrowserHistory();
 
@@ -29,8 +30,12 @@ export default class App extends Component {
       <ThemeProvider theme={theme}>
         <Router history={browserHistory}>
           <Routes />
-        </Router>
-      </ThemeProvider>
+          {/* <Route path="/" component={App}> */}
+          
+          <Route path="/SpringMongo2/data" component={DataView} />
+          {/* </Route> */}
+         </Router>
+       </ThemeProvider>
     );
   }
 }

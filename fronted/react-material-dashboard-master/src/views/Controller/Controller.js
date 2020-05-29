@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
-import { SmartHome, Energy } from './components';
+import { CurrentHumidity, CurrentTemperature, CurrentDust, SmartHome } from './components';
 
 const useStyles = makeStyles(theme => ({  // theme 테마, object를 return
   root: {
@@ -20,6 +20,7 @@ const Controller = () => { // () 인자로 받는다는 의미 받아서 밑에 
         container
         spacing={4}
       >
+      
       <Grid
           item    // 12칸중에 몇칸을 차지하는지
           lg={4}  //lg : largedevice를 의미
@@ -27,11 +28,32 @@ const Controller = () => { // () 인자로 받는다는 의미 받아서 밑에 
           xl={4}
           xs={12}
         >
-          <Energy />
+          <CurrentTemperature />
         </Grid>
+
         <Grid
           item    // 12칸중에 몇칸을 차지하는지
           lg={4}  //lg : largedevice를 의미
+          md={6}  // md : tablet
+          xl={4}
+          xs={12}
+        >
+          <CurrentHumidity />
+        </Grid>
+
+        <Grid
+          item    // 12칸중에 몇칸을 차지하는지
+          lg={4}  //lg : largedevice를 의미
+          md={6}  // md : tablet
+          xl={4}
+          xs={12}
+        >
+          <CurrentDust />
+        </Grid>
+
+      <Grid
+          item    // 12칸중에 몇칸을 차지하는지
+          lg={12}  //lg : largedevice를 의미
           md={6}  // md : tablet
           xl={4}
           xs={12}
@@ -40,6 +62,7 @@ const Controller = () => { // () 인자로 받는다는 의미 받아서 밑에 
         </Grid>
         
       </Grid>
+      
     </div>
   );
 };

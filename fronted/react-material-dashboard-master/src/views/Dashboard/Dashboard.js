@@ -12,7 +12,8 @@ import {
   LatestProducts,
   LatestOrders,
   SecondChart,
-  ThirdChart
+  ThirdChart,
+  DataView
 } from './components';
 
 const useStyles = makeStyles(theme => ({
@@ -30,7 +31,7 @@ const Dashboard = () => {
         container
         spacing={4}
       >
-        <Grid
+        {/* <Grid
           item
           lg={3}
           sm={6}
@@ -38,8 +39,9 @@ const Dashboard = () => {
           xs={12}
         >
           <Temperature />
-        </Grid>
-        <Grid
+        </Grid> */}
+        
+        {/* <Grid
           item
           lg={3}
           sm={6}
@@ -47,8 +49,8 @@ const Dashboard = () => {
           xs={12}
         >
           <Humidity />
-        </Grid>
-        <Grid
+        </Grid> */}
+        {/* <Grid
           item
           lg={3}
           sm={6}
@@ -56,8 +58,8 @@ const Dashboard = () => {
           xs={12}
         >
           <Dust />
-        </Grid>
-        <Grid
+        </Grid> */}
+        {/* <Grid
           item
           lg={3}
           sm={6}
@@ -65,8 +67,9 @@ const Dashboard = () => {
           xs={12}
         >
           <TotalProfit />
-        </Grid>
-        <Grid
+        </Grid> */}
+        
+        {/* <Grid
           item
           lg={8}
           md={12}
@@ -74,8 +77,8 @@ const Dashboard = () => {
           xs={12}
         >
           <LatestSales />
-        </Grid>
-        <Grid
+        </Grid> */}
+        {/* <Grid
           item
           lg={4}
           md={6}
@@ -83,8 +86,8 @@ const Dashboard = () => {
           xs={12}
         >
           <UsersByDevice />
-        </Grid>
-        <Grid
+        </Grid> */}
+        {/* <Grid
           item
           lg={8}
           md={12}
@@ -92,9 +95,9 @@ const Dashboard = () => {
           xs={12}
         >
           <SecondChart />
-        </Grid>
+        </Grid> */}
 
-        <Grid
+        {/* <Grid
           item
           lg={4}
           md={12}
@@ -102,6 +105,16 @@ const Dashboard = () => {
           xs={12}
         >
           <ThirdChart />
+        </Grid> */}
+
+        <Grid
+          item
+          lg={12}
+          md={12}
+          xl={9}
+          xs={12}
+        >
+          <DataView />
         </Grid>
      
 

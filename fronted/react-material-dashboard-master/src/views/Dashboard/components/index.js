@@ -8,4 +8,5 @@ export { default as Humidity } from './Humidity';
 export { default as UsersByDevice } from './UsersByDevice';
 export { default as SecondChart } from './SecondChart';
 export { default as ThirdChart } from './ThirdChart';
+export { default as DataView } from './DataView';
 

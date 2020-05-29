@@ -14,7 +14,6 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import HomeIcon from '@material-ui/icons/Home';
 import { Profile, SidebarNav, UpgradePlan } from './components';
 
-
 const useStyles = makeStyles(theme => ({
   drawer: {
     width: 240,
@@ -50,11 +49,12 @@ const Sidebar = props => {
       href: '/dashboard',
       icon: <DashboardIcon />
     },
-    {
-      title: 'Users',
-      href: '/users',
-      icon: <PeopleIcon />
-    },
+
+    // {
+    //   title: 'Users',
+    //   href: '/users',
+    //   icon: <PeopleIcon />
+    // },
     /*
     {
       title: 'Products',
@@ -62,11 +62,11 @@ const Sidebar = props => {
       icon: <ShoppingBasketIcon />
     },
     */
-    {
-      title: 'Authentication',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
-    },
+    // {
+    //   title: 'Authentication',
+    //   href: '/sign-in',
+    //   icon: <LockOpenIcon />
+    // },
     /*
     {
       title: 'Typography',
@@ -81,24 +81,45 @@ const Sidebar = props => {
       icon: <ImageIcon />
     },
     */
-    {
-      title: 'Account',
-      href: '/account',
-      icon: <AccountBoxIcon />
-    },
+    // {
+    //   title: 'Account',
+    //   href: '/account',
+    //   icon: <AccountBoxIcon />
+    // },
 
     {
       title: 'Controller',
       href: '/controller',
       icon: <HomeIcon />
     },
- 
+
+    // {
+    //   title: 'Settings',
+    //   href: '/settings',
+    //   icon: <SettingsIcon />
+    // }
     {
-      title: 'Settings',
-      href: '/settings',
-      icon: <SettingsIcon />
+      title: 'good',
+      href: '#',
+      icon:<img widht="24px" height="24px" src='/images/avatars/good.png'/>
+    },
+    {
+      title: 'usually',
+      href: '#',
+      icon:<img widht="24px" height="24px" src='/images/avatars/usually.png'/>
+    },
+    {
+      title: 'Bad',
+      href: '#',
+      icon:<img widht="24px" height="24px" src='/images/avatars/Bad.png'/>
+    },
+    {
+      title: 'Very Bad',
+      href: '#',
+      icon:<img widht="24px" height="24px" src='/images/avatars/Very_bad.png'/>
     }
   ];
+
 
   return (
     <Drawer
@@ -118,6 +139,7 @@ const Sidebar = props => {
           className={classes.nav}
           pages={pages}
         />
+
       </div>
     </Drawer>
   );

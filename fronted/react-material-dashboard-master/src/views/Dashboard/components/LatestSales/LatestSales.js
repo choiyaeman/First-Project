@@ -94,7 +94,7 @@ const LatestSales = props => {
   );
 };
 
-LatestSales.propTypes = {
+LatestSales.propTypes = { // LatestSales컴포넌트의 propTypes객체를 정의. propTypes 객체의 키 값은 프롭스 명이고, 값은 설정할 기본값.
   className: PropTypes.string
 };
 
