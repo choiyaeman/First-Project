@@ -3,9 +3,6 @@ import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 
 import {
-  Temperature,
-  Humidity,
-  Dust,
   TotalProfit,
   LatestSales,
   UsersByDevice,
@@ -31,34 +28,6 @@ const Dashboard = () => {
         container
         spacing={4}
       >
-        {/* <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <Temperature />
-        </Grid> */}
-        
-        {/* <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <Humidity />
-        </Grid> */}
-        {/* <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <Dust />
-        </Grid> */}
         {/* <Grid
           item
           lg={3}

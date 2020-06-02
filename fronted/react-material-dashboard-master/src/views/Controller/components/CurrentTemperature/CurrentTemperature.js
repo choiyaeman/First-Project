@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -6,6 +6,8 @@ import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 //import MoneyIcon from '@material-ui/icons/Money';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
+import axios from 'axios';
+import {useInterval} from 'common/utils';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,13 +40,24 @@ const useStyles = makeStyles(theme => ({
   differenceValue: {
     color: theme.palette.error.dark,
     marginRight: theme.spacing(1)
-  }
+  },
+ 
 }));
 
 const CurrentTemperature = props => {
   const { className, ...rest } = props;
 
   const classes = useStyles();
+
+  const [temperatureData, setTemperatureData] = useState({
+    temperature:-999 // 기본값을 설정해줘야 오류가 안난다.
+  });
+  useInterval(() => {
+    axios.get("http://localhost:8080/SpringMongo2/selectTest?1=1")
+    .then(response => {    
+      setTemperatureData(response.data[response.data.length-1]) // -1 한 이유는 예를들어 배열은 a[0], a[1] ... 0 부터 시작하므로 -1을 해줘야한다. 
+    });
+  }, 3000)
 
   return (
     <Card
@@ -65,7 +78,7 @@ const CurrentTemperature = props => {
             >
               Temperature
             </Typography>
-            <Typography variant="h3">$24,000</Typography>
+            <Typography variant="h3">{temperatureData.temperature}°C</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -73,13 +86,12 @@ const CurrentTemperature = props => {
             </Avatar>
           </Grid>
         </Grid>
-        <div className={classes.difference}>
+        {/* <div className={classes.difference}>
           <ArrowDownwardIcon className={classes.differenceIcon} />
           <Typography
             className={classes.differenceValue}
             variant="body2"
           >
-            12%
           </Typography>
           <Typography
             className={classes.caption}
@@ -87,7 +99,7 @@ const CurrentTemperature = props => {
           >
             Since last month
           </Typography>
-        </div>
+        </div> */}
       </CardContent>
     </Card>
   );

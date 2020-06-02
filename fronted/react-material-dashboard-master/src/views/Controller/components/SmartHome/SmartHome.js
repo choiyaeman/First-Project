@@ -80,20 +80,20 @@ export default function CustomizedSwitches() {
     setLedSwitch(!ledSwitch);
     // 호출부
     if(currentSwitchValue){
-      axios.get('/api/led/on?brightness=10'); //켜졌을때.. flask 서버 api로부터 불러온다..
+      axios.get('http://107.10.13.44<flask서버주소>/led/on'); //켜졌을때.. flask 서버 api로부터 불러온다..
     } else {
-      axios.get('/api/led/off?brightness=10');  // 꺼졌을때
+      axios.get('/api/led/off');  // 꺼졌을때
     }
-     
+    
   }
   const handleAirSwitch = (evt) => {
     const currentAirValue = !airSwitch;
     setAirSwitch(!airSwitch);
     // 호출부
     if(currentAirValue) {
-      axios.get('/api/air/on?brightness=10');
+      axios.get('/api/moter/on');
     } else {
-      axios.get('/api/air/off?brightness=10');
+      axios.get('/api/moter/off');
     }
   }
 

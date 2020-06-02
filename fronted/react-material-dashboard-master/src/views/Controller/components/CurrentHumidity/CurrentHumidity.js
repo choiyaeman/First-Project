@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import PeopleIcon from '@material-ui/icons/PeopleOutlined';
+import axios from 'axios';
+import { useInterval } from 'common/utils';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -45,6 +47,17 @@ const CurrentHumidity = props => {
 
   const classes = useStyles();
 
+  const [humidityData, setHumidityData] = useState({
+    humidity:-999
+  });
+
+  useInterval(() => {
+    axios.get("http://localhost:8080/SpringMongo2/selectTest")
+    .then(response => {
+      setHumidityData(response.data[response.data.length-1])
+    });
+  }, 3000)
+
   return (
     <Card
       {...rest}
@@ -64,7 +77,7 @@ const CurrentHumidity = props => {
             >
               Humidity
             </Typography>
-            <Typography variant="h3">1,600</Typography>
+            <Typography variant="h3">{humidityData.humidity}%</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -72,7 +85,7 @@ const CurrentHumidity = props => {
             </Avatar>
           </Grid>
         </Grid>
-        <div className={classes.difference}>
+        {/* <div className={classes.difference}>
           <ArrowUpwardIcon className={classes.differenceIcon} />
           <Typography
             className={classes.differenceValue}
@@ -86,7 +99,7 @@ const CurrentHumidity = props => {
           >
             Since last month
           </Typography>
-        </div>
+        </div> */}
       </CardContent>
     </Card>
   );

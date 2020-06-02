@@ -8,7 +8,7 @@ class DataView extends React.Component {
     super(props);
 
     this.state = {
-      environment: [], //18개 전체 데이터
+      environment: [],
     };
   }
 
@@ -35,36 +35,37 @@ class DataView extends React.Component {
     // [참고] https://okky.kr/article/472399
   }
 
+  //{"id":"5ec60b86f198ebe53368b62b","temperature":"23.90","wtime":"0","humidity":"38.30","watertFlow":"15.50","w":"0","time":"2020/05/2114:03","dustDensity":"81.25"},
+
   render() {
     const { environment } = this.state; //배열이 들어감
     let sumDust = 0;
     let sumTemp = 0;
     let sumHumidity = 0;
+    let sumWaterFlow = 0;
     for (let i = 0; i < environment.length; i++) {
       sumDust += parseFloat(environment[i]["dustDensity"]); //미세먼지
       sumTemp += parseFloat(environment[i]["temperature"]); //온도
       sumHumidity += parseFloat(environment[i]["humidity"]); //습도
+      sumWaterFlow += parseFloat(environment[i]["watertFlow"]); //유량
     }
 
     const expData1 = {
-      labels: ["미세먼지", "온도", "습도"],
+      labels: ["미세먼지", "온도", "습도", "유량"],
       datasets: [
         {
-          labels: ["미세먼지", "온도", "습도"],
-          data: [
-            sumDust / environment.length,
-            sumTemp / environment.length,
-            sumHumidity / environment.length,
-          ], //environment.length==18
+          labels: ["미세먼지", "온도", "습도", "유량"],
+          data: [sumDust, sumTemp, sumHumidity, sumWaterFlow], //environment.length==18
           borderWidth: 2,
           hoverBorderWidth: 3,
           backgroundColor: [
             "rgba(238, 102, 121, 1)",
             "rgba(98, 181, 229, 1)",
             "rgba(255, 198, 0, 1)",
+            "rgba(235, 52, 216, 1)",
           ],
           fill: true,
-          barPercentage: 0.8, //막대기 굵기
+          barPercentage: 0.6, //막대기 굵기
         },
       ],
     };

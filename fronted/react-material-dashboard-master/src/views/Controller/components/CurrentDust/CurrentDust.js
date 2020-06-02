@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -12,6 +12,8 @@ import {
 } from '@material-ui/core';
 import InsertChartIcon from '@material-ui/icons/InsertChartOutlined';
 import { brown } from '@material-ui/core/colors';
+import axios from 'axios';
+import {useInterval} from 'common/utils';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,6 +46,16 @@ const CurrentDust = props => {
 
   const classes = useStyles();
 
+  const [dustData, setDustData] = useState({
+    dustDensity:-1
+  });
+
+  useInterval(() => { 
+    axios.get("http://localhost:8080/SpringMongo2/selectTest")
+    .then(response => {
+      setDustData(response.data[response.data.length-1])
+    });
+  }, 3000)
   return (
     <Card
       {...rest}
@@ -63,7 +75,7 @@ const CurrentDust = props => {
             >
               Dust
             </Typography>
-            <Typography variant="h3">75.5[ug/m3]</Typography>
+            <Typography variant="h3">{dustData.dustDensity}[ug/m3]</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -71,11 +83,11 @@ const CurrentDust = props => {
             </Avatar>
           </Grid>
         </Grid>
-        <LinearProgress
+        {/* <LinearProgress
           className={classes.progress}
           value={75.5}
           variant="determinate"
-        />
+        /> */}
       </CardContent>
     </Card>
   );
