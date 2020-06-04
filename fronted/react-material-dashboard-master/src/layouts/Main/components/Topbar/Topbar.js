@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { AppBar, Toolbar, Badge, Hidden, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar, Badge, Hidden, IconButton, Typography, Avatar } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
@@ -17,8 +17,17 @@ const useStyles = makeStyles(theme => ({
   },
   signOutButton: {
     marginLeft: theme.spacing(1)
+  },
+  title: {
+    height:theme.spacing(5),
+    color:theme.palette.white
+  },
+  avatar: {
+    // left: 60,
+    width: 50,
+    height: 50
   }
-}));
+})); 
 
 const Topbar = props => {
   const { className, onSidebarOpen, ...rest } = props;
@@ -27,6 +36,10 @@ const Topbar = props => {
 
   const [notifications] = useState([]);
 
+  const logo = {
+    avatar: '/images/avatars/dbms-logo.png',
+  }
+
   return (
     <AppBar
       {...rest}
@@ -34,10 +47,22 @@ const Topbar = props => {
     >
       <Toolbar>
         <RouterLink to="/">
-          <img
+          <Typography
+            className={classes.title}
+            color="textPrimary"
+            gutterBottom
+            variant="h1"
+          >
+        <Avatar
+          className={classes.avatar}
+          src={logo.avatar}
+        />
+          DBMS
+          </Typography>
+          {/* <img
             alt="Logo"
-            src= "/images/logos/logo--white.svg" //"/images/logos/dbms-logo.svg"  
-          />
+            src= "/images/logos/dbms-logo.svg"  //src= "/images/logos/logo--white.svg" 
+          /> */}
         </RouterLink>
         <div className={classes.flexGrow} />
         <Hidden mdDown>

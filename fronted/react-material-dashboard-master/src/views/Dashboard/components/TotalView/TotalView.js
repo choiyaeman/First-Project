@@ -3,7 +3,7 @@ import { Bar, Radar } from "react-chartjs-2";
 import { Grid, Card, CardHeader } from "@material-ui/core";
 import PolarView from "./PolarView";
 
-class DataView extends React.Component {
+class TotalView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -68,7 +68,7 @@ class DataView extends React.Component {
       
       <div>
         <Grid container spacing={4}>
-          <Grid item lg={12}>
+          {/* <Grid item lg={12}>
             <CardHeader title= "총 Energy사용량" />
             <Bar
               options={{
@@ -80,16 +80,16 @@ class DataView extends React.Component {
               data={expData1}
               height={120}
             />
-          </Grid>
+          </Grid> */}
           {/* <Grid item lg={6}>
             <Radar data={expData2} />
           </Grid> */}
           {/* {JSON.stringify(environment)} */}
           <br />
-{/* 
-          <Grid item lg={6}>
+
+          <Grid item lg={12}>
             <PolarView />
-          </Grid> */}
+          </Grid>
         </Grid>
       </div>
 
@@ -97,4 +97,4 @@ class DataView extends React.Component {
   }
 }
 
-export default DataView;
+export default TotalView;

@@ -64,13 +64,17 @@ const DustChart = props => {
         const newLabelData = [];
   
         response.data.forEach((row,index) => {
-          newLabelData.push(row.date+":"+index);
-          // newChartData.push(row.temperature);
-          newChartData.push(getRandomInt(0,60));
+          newLabelData.push(row.time+":"+index);
+           newChartData.push(row.dustDensity);
+          //newChartData.push(getRandomInt(0,60));
         });
   
-        setChartData(newChartData);
-        setLabelData(newLabelData);
+        // setChartData(newChartData);
+        // setLabelData(newLabelData);
+        const reverseChartData = newChartData.reverse();
+        const reverseLabelData = newLabelData.reverse();
+        setChartData(reverseChartData);
+        setLabelData(reverseLabelData);
       });
   }, 3000)
 
@@ -99,7 +103,7 @@ const DustChart = props => {
               labels: labelData,
               datasets: [
                 {
-                  label: 'Room Temperature',
+                  label: 'Room Dust',
                   backgroundColor: '#fafafa',//'#42a5f5',//palette.primary.main,
                   data: chartData
                 }

@@ -12,6 +12,7 @@ import './assets/scss/index.scss';
 import validators from './common/validators';
 import Routes from './Routes';
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED='0';
 
 const browserHistory = createBrowserHistory();
 

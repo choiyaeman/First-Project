@@ -8,7 +8,7 @@ import {Divider, Card, CardContent} from '@material-ui/core';
 import EmojiObjectsTwoToneIcon from '@material-ui/icons/EmojiObjectsTwoTone';
 import ToysIcon from '@material-ui/icons/Toys';
 import { makeStyles } from '@material-ui/styles';
-import axios from 'axios';
+import client from "../../../../lib/client";
 
 //const apiURL = "http://localhost:5000";
 
@@ -75,26 +75,36 @@ export default function CustomizedSwitches() {
     setLedSwitch(true);
   },[]);
 
-  const handleLedSwitch = (evt) => {
+  const handleLedSwitch = async (evt) => {
     const currentSwitchValue = !ledSwitch;  // currentSwitchValue란 현재 스위치 값은 켜져있다라는 의미..
     setLedSwitch(!ledSwitch);
+
+    let ledResult;
     // 호출부
     if(currentSwitchValue){
-      axios.get('http://107.10.13.44<flask서버주소>/led/on'); //켜졌을때.. flask 서버 api로부터 불러온다..
+      const response = await client.get('https://121.138.83.92:8000/led/on'); //켜졌을때.. flask 서버 api로부터 불러온다..
+      ledResult = response.data;
     } else {
-      axios.get('/api/led/off');  // 꺼졌을때
+      const response = await client.get('https://121.138.83.92:8000/led/off');  // 꺼졌을때
+      ledResult = response.data;
     }
+
+    console.log(ledResult);
     
   }
-  const handleAirSwitch = (evt) => {
+  const handleAirSwitch = async (evt) => {
     const currentAirValue = !airSwitch;
     setAirSwitch(!airSwitch);
     // 호출부
+    let moterResult;
     if(currentAirValue) {
-      axios.get('/api/moter/on');
+      const response = await client.get('https://121.138.83.92:8000/moter/on');
+      moterResult = response.data;
     } else {
-      axios.get('/api/moter/off');
+      const response = await client.get('https://121.138.83.92:8000/moter/off');
+      moterResult = response.data;
     }
+    console.log(moterResult);
   }
 
   return (

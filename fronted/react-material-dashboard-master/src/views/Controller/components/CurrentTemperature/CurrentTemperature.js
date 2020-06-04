@@ -55,7 +55,7 @@ const CurrentTemperature = props => {
   useInterval(() => {
     axios.get("http://localhost:8080/SpringMongo2/selectTest?1=1")
     .then(response => {    
-      setTemperatureData(response.data[response.data.length-1]) // -1 한 이유는 예를들어 배열은 a[0], a[1] ... 0 부터 시작하므로 -1을 해줘야한다. 
+      setTemperatureData(response.data[0])//[response.data.length-1]) // -1 한 이유는 예를들어 배열은 a[0], a[1] ... 0 부터 시작하므로 -1을 해줘야한다. 
     });
   }, 3000)
 

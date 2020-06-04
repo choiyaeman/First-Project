@@ -52,12 +52,16 @@ useInterval(() => {
       const newLabelData = [];
 
       response.data.forEach((row, index) => {
-        newLabelData.push(row.date+":"+index);
-        //newChartData.push(row.temperature);
-        newChartData.push(getRandomInt(10,90));
+        newLabelData.push(row.time+":"+index);
+        newChartData.push(row.humidity);
+        //newChartData.push(getRandomInt(10,90));
       });
-        setChartData(newChartData);
-        setLabelData(newLabelData);
+        // setChartData(newChartData);
+        // setLabelData(newLabelData);
+        const reverseChartData = newChartData.reverse();
+        const reverseLabelData = newLabelData.reverse();
+        setChartData(reverseChartData);
+        setLabelData(reverseLabelData);
     });
 }, 3000)
 

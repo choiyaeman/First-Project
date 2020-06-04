@@ -10,8 +10,12 @@ import {
   LatestOrders,
   SecondChart,
   ThirdChart,
-  DataView
+  DataView,
+  PolarView,
+  CurrentEnvironment
 } from './components';
+import CurrentEnergy from './components/CurrentEnergy';
+import TotalView from './components/TotalView';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,36 +60,46 @@ const Dashboard = () => {
         >
           <UsersByDevice />
         </Grid> */}
-        {/* <Grid
+        
+        <Grid
           item
-          lg={8}
+          lg={6}
           md={12}
           xl={9}
           xs={12}
         >
-          <SecondChart />
-        </Grid> */}
-
-        {/* <Grid
-          item
-          lg={4}
-          md={12}
-          xl={9}
-          xs={12}
-        >
-          <ThirdChart />
-        </Grid> */}
+          <CurrentEnergy />
+        </Grid>
 
         <Grid
           item
-          lg={12}
+          lg={6}
           md={12}
           xl={9}
           xs={12}
         >
           <DataView />
         </Grid>
-     
+
+        <Grid
+          item
+          lg={6}
+          md={12}
+          xl={9}
+          xs={12}
+        >
+          <CurrentEnvironment />
+        </Grid>
+
+        <Grid
+          item
+          lg={6}
+          md={12}
+          xl={9}
+          xs={12}
+        >
+          <TotalView />
+        </Grid>
 
       </Grid>
     </div>

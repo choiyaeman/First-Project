@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 import { makeStyles } from '@material-ui/styles'; 
 
 import {
@@ -37,12 +37,14 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min; //최댓값은 제외, 최솟값은 포함
 }
 
-const TemperatureChart = props => {
+const CurrentEnvironment = props => {
   const { className, ...rest } = props; 
 
   const classes = useStyles();
 
 const [chartData, setChartData] = useState([]);
+const [chartData1, setChartData1 ] = useState([]);
+const [chartData2, setChartData2 ] = useState([]);
 const [labelData, setLabelData] = useState([]);
 
 //[{"id":"5ece13c4ea2ecf898165c6f5","dustDensity":"31.25","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6f6","dustDensity":"16.25","date":"21:46","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c6f7","dustDensity":"11.25","date":"21:46","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c6f8","dustDensity":"42.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6f9","dustDensity":"36.25","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fa","dustDensity":"35.00","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fb","dustDensity":"27.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fc","dustDensity":"27.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fd","dustDensity":"41.25","date":"21:47","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fe","dustDensity":"35.00","date":"21:47","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6ff","dustDensity":"28.75","date":"21:47","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c700","dustDensity":"15.00","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c701","dustDensity":"13.75","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c702","dustDensity":"20.00","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c703","dustDensity":"32.50","date":"21:47","temperature":"22.20","humidity":"49.20"},{"id":"5ece13c4ea2ecf898165c704","dustDensity":"31.25","date":"21:47","temperature":"22.20","humidity":"49.30"},{"id":"5ece13c4ea2ecf898165c705","dustDensity":"26.25","date":"21:47","temperature":"22.20","humidity":"49.50"},{"id":"5ece13c4ea2ecf898165c706","dustDensity":"26.25","date":"21:47","temperature":"22.20","humidity":"49.60"}]
@@ -61,17 +63,26 @@ useInterval(() => {
       //   }
       // });
       const newChartData = [];
+      const newChartData1 = [];
+      const newChartData2 = [];
       const newLabelData = [];
 
       response.data.forEach((row,index) => {
         newLabelData.push(row.time+":"+index);
         newChartData.push(row.temperature);
+        newChartData1.push(row.humidity);
+        newChartData2.push(row.dustDensity);
        // newChartData.push(getRandomInt(10,35));
       });
+
       const reversedLabel = newLabelData.reverse();     // 배열 원소 순서를 거꾸로
       const reversedChartData = newChartData.reverse();
+      const reversedChartData1 = newChartData1.reverse();
+      const reversedChartData2 = newChartData2.reverse();
 
       setChartData(reversedChartData);
+      setChartData1(reversedChartData1);
+      setChartData2(reversedChartData2);
       setLabelData(reversedLabel);
       // setChartData(newChartData);
       // setLabelData(newLabelData);
@@ -79,7 +90,7 @@ useInterval(() => {
 }, 3000)
 
   return (
-    <Card
+    <div
       {...rest}
       className={clsx(classes.root, className)}
     >
@@ -93,32 +104,42 @@ useInterval(() => {
             real time <AccessAlarmIcon />
           </Button>
         }
-        title= "Temperature"
+        title= "Environment"
       />
       <Divider />
-      <CardContent>
+      
         <div className={classes.chartContainer}>
           <Line
             data = {{
               labels: labelData,
               datasets: [
                 {
-                  label: 'Room Temperature',
-                  backgroundColor: '#fafafa',//'#42a5f5',//palette.primary.main,
+                  label: 'Temperature',
+                  backgroundColor: "#FF0000",//'#42a5f5',//palette.primary.main,
                   data: chartData
+                },
+                {
+                    label: 'Humidity',
+                    backgroundColor: '#40FF00',//'#42a5f5',//palette.primary.main,
+                    data: chartData1
+                },
+                {
+                    label: 'Dust',
+                    backgroundColor: '#696969',//'#42a5f5',//palette.primary.main,
+                    data: chartData2
                 }
               ]
             }}
             options={options}
           />
         </div>
-      </CardContent>
-    </Card>
+      </div>
   );
 };
 
-TemperatureChart.propTypes = {
+CurrentEnvironment.propTypes = {
   className: PropTypes.string
 };
 
-export default TemperatureChart;
+export default CurrentEnvironment;
+
