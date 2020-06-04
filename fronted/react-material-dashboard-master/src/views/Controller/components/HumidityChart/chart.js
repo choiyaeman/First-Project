@@ -37,7 +37,10 @@ export const options = {  //이름으로 export
         barPercentage: 0.5,
         categoryPercentage: 0.5,
         ticks: {
-          fontColor: palette.text.secondary
+          display: false,
+          fontColor: palette.text.secondary,
+          autoSkip: true,
+          maxTicksLimit: 20
         },
         gridLines: {
           display: false,

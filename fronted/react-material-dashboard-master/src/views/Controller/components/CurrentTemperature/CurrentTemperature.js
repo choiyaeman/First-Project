@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
+import { Card, CardContent, Grid, Typography, Avatar, colors } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 //import MoneyIcon from '@material-ui/icons/Money';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
@@ -59,6 +59,16 @@ const CurrentTemperature = props => {
     });
   }, 3000)
 
+  const pickColor = (temperature) => {
+    if(temperature > 30) {
+      return colors.red[500];
+    } else if(temperature > 20) {
+      return colors.green[500];
+    } else {
+      return colors.blue[500];
+    }
+  }
+
   return (
     <Card
       {...rest}
@@ -78,7 +88,7 @@ const CurrentTemperature = props => {
             >
               Temperature
             </Typography>
-            <Typography variant="h3">{temperatureData.temperature}°C</Typography>
+            <Typography variant="h3" style={{color:pickColor(temperatureData.temperature)}}>{temperatureData.temperature}°C</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>

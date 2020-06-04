@@ -10,7 +10,8 @@ import {
   CardContent,
   CardActions,
   Divider,
-  Button
+  Button,
+  colors
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -104,7 +105,9 @@ useInterval(() => {
               datasets: [
                 {
                   label: 'Room Temperature',
-                  backgroundColor: '#fafafa',//'#42a5f5',//palette.primary.main,
+                  //fill:false,
+                  backgroundColor: colors.red[400],
+                  borderColor: colors.red[400],//'#42a5f5',//palette.primary.main,
                   data: chartData
                 }
               ]

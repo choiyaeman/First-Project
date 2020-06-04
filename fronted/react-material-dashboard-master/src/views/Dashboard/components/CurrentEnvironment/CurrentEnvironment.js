@@ -10,6 +10,7 @@ import {
   CardContent,
   CardActions,
   Divider,
+  colors,
   Button
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -22,11 +23,7 @@ import {useInterval} from 'common/utils';
 const useStyles = makeStyles(() => ({
   root: {},
   chartContainer: {
-    height: 200,
-    position: 'relative'
-  },
-  actions: {
-    justifyContent: 'flex-end'
+    height: 500
   }
 }));
 
@@ -67,7 +64,7 @@ useInterval(() => {
       const newChartData2 = [];
       const newLabelData = [];
 
-      response.data.forEach((row,index) => {
+      response.data.slice(0,50).forEach((row,index) => {
         newLabelData.push(row.time+":"+index);
         newChartData.push(row.temperature);
         newChartData1.push(row.humidity);
@@ -90,22 +87,23 @@ useInterval(() => {
 }, 3000)
 
   return (
-    <div
+    <Card
       {...rest}
       className={clsx(classes.root, className)}
     >
       <CardHeader
         //action={componentReturnFunction("Last 7 days")} // 함수를 호출해서 넘기는것..
-        action={  // 부모가 하나
-          <Button // 참조..
-            size="small"
-            variant="text"
-          >
-            real time <AccessAlarmIcon />
-          </Button>
+        title={  // 부모가 하나
+            <div style={{display:"flex",alignItems:"center"}}>
+                    <div>Environment</div>
+                    <div style={{flexGrow:1}}></div>
+                    <div>Realtime</div>
+                    &nbsp;
+                    <AccessAlarmIcon/>
+            </div>
         }
-        title= "Environment"
-      />
+      >
+       </CardHeader>
       <Divider />
       
         <div className={classes.chartContainer}>
@@ -114,18 +112,21 @@ useInterval(() => {
               labels: labelData,
               datasets: [
                 {
-                  label: 'Temperature',
-                  backgroundColor: "#FF0000",//'#42a5f5',//palette.primary.main,
+                  label: '온도',
+                  fill: false,
+                  borderColor: colors.red[500],
                   data: chartData
                 },
                 {
-                    label: 'Humidity',
-                    backgroundColor: '#40FF00',//'#42a5f5',//palette.primary.main,
+                    label: '습도',
+                    fill: false,
+                    borderColor:colors.green[500],
                     data: chartData1
                 },
                 {
-                    label: 'Dust',
-                    backgroundColor: '#696969',//'#42a5f5',//palette.primary.main,
+                    label: '미세먼지',
+                    fill: false,
+                    borderColor: colors.grey[500],//'#42a5f5',//palette.primary.main,
                     data: chartData2
                 }
               ]
@@ -133,7 +134,7 @@ useInterval(() => {
             options={options}
           />
         </div>
-      </div>
+      </Card>
   );
 };
 

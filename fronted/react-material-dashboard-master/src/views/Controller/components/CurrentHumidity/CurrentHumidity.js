@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
+import { Card, CardContent, Grid, Typography, Avatar, colors } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import PeopleIcon from '@material-ui/icons/PeopleOutlined';
 import axios from 'axios';
@@ -58,6 +58,16 @@ const CurrentHumidity = props => {
     });
   }, 3000)
 
+  const pickColor = (humidity) => {
+    if(humidity > 60) {
+      return colors.red[500];
+    } else if(humidity >39) {
+      return colors.green[500];
+    } else {
+      return colors.brown[500];
+    }
+  }
+
   return (
     <Card
       {...rest}
@@ -77,7 +87,7 @@ const CurrentHumidity = props => {
             >
               Humidity
             </Typography>
-            <Typography variant="h3">{humidityData.humidity}%</Typography>
+            <Typography variant="h3" style={{color:pickColor(humidityData.humidity)}}>{humidityData.humidity}%</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>

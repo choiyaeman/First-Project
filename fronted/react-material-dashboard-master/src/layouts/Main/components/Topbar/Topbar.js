@@ -20,12 +20,16 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     height:theme.spacing(5),
+    marginLeft:theme.spacing(2),
     color:theme.palette.white
   },
   avatar: {
     // left: 60,
     width: 50,
     height: 50
+  }
+  ,logoContainer: {
+    ...theme.centerContainer
   }
 })); 
 
@@ -46,24 +50,26 @@ const Topbar = props => {
       className={clsx(classes.root, className)}
     >
       <Toolbar>
-        <RouterLink to="/">
-          <Typography
-            className={classes.title}
-            color="textPrimary"
-            gutterBottom
-            variant="h1"
-          >
-        <Avatar
-          className={classes.avatar}
-          src={logo.avatar}
-        />
-          DBMS
-          </Typography>
-          {/* <img
-            alt="Logo"
-            src= "/images/logos/dbms-logo.svg"  //src= "/images/logos/logo--white.svg" 
-          /> */}
-        </RouterLink>
+        <div>
+          <RouterLink className={classes.logoContainer} to="/">
+            <Avatar
+              className={classes.avatar}
+              src={logo.avatar}
+            />
+            <Typography
+              className={classes.title}
+              color="textPrimary"
+              variant="h1"
+            >
+          
+            DBMS
+            </Typography>
+            {/* <img
+              alt="Logo"
+              src= "/images/logos/dbms-logo.svg"  //src= "/images/logos/logo--white.svg" 
+            /> */}
+          </RouterLink>
+        </div>
         <div className={classes.flexGrow} />
         <Hidden mdDown>
           <IconButton color="inherit">

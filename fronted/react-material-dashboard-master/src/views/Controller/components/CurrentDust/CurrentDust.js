@@ -8,7 +8,8 @@ import {
   Grid,
   Typography,
   Avatar,
-  LinearProgress
+  LinearProgress,
+  colors
 } from '@material-ui/core';
 import InsertChartIcon from '@material-ui/icons/InsertChartOutlined';
 import { brown } from '@material-ui/core/colors';
@@ -57,6 +58,15 @@ const CurrentDust = props => {
     });
   }, 3000)
 
+  const pickColor = (dustDensity) => {
+    if(dustDensity > 100) {
+      return colors.red[500];
+    } else if(dustDensity >50) {
+      return colors.green[500];
+    } else {
+      return colors.blue[500];
+    }
+  }
   return (
     <Card
       {...rest}
@@ -76,7 +86,7 @@ const CurrentDust = props => {
             >
               Dust
             </Typography>
-            <Typography variant="h3">{dustData.dustDensity}[ug/m3]</Typography>
+            <Typography variant="h3" style={{color:pickColor(dustData.dustDensity)}}>{dustData.dustDensity}[ug/m3]</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>

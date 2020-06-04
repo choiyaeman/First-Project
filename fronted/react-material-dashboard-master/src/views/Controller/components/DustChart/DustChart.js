@@ -10,7 +10,8 @@ import {
   CardContent,
   CardActions,
   Divider,
-  Button
+  Button,
+  colors
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -104,7 +105,9 @@ const DustChart = props => {
               datasets: [
                 {
                   label: 'Room Dust',
-                  backgroundColor: '#fafafa',//'#42a5f5',//palette.primary.main,
+                  //fill: false,
+                  backgroundColor: colors.brown[700],
+                  borderColor: colors.brown[700],//'#42a5f5',//palette.primary.main,
                   data: chartData
                 }
               ]

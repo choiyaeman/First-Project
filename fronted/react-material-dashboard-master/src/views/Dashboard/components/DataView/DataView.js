@@ -1,100 +1,94 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Bar, Radar } from "react-chartjs-2";
-import { Grid, Card, CardHeader } from "@material-ui/core";
+import { Grid, Card, CardHeader, Divider, colors } from "@material-ui/core";
 import PolarView from "./PolarView";
+import { makeStyles } from "@material-ui/styles";
 
-class DataView extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      environment: [],
-    };
+const useStyles = makeStyles(() => ({
+  root: {},
+  chartContainer: {
+    height:300
   }
+}));
 
-  componentDidMount() {
+const DataView = (props) => {
+
+  const [environment, setEnvironment] = useState([]);
+
+  const classes = useStyles();
+
+  useEffect(() => {
     fetch("http://localhost:8080/SpringMongo2/selectTest")
       .then((res) => res.json())
       .then(
         (result) => {
-          this.setState({
-            environment: result,
-          });
+          setEnvironment(result);
         },
         // 주의: 컴포넌트의 실제 버그에서 발생하는 예외사항들을 넘기지 않도록
         // 에러를 catch() 블록(block)에서 처리하기보다는
         // 이 부분에서 처리하는 것이 중요합니다.
         (error) => {
-          this.setState({
-            environment: [],
-          });
+          setEnvironment([]);
         }
       );
+  });
 
-    //setInterval, setState로 가져오기
-    // [참고] https://okky.kr/article/472399
+  let sumWaterFlow = 0;
+  let sumW = 0;
+  for (let i = 0; i < environment.length; i++) {
+    sumWaterFlow += parseFloat(environment[i]["watertFlow"]); //유량
+    sumW += parseFloat(environment[i]["w"]); // 전력
   }
 
-  //{"id":"5ec60b86f198ebe53368b62b","temperature":"23.90","wtime":"0","humidity":"38.30","watertFlow":"15.50","w":"0","time":"2020/05/2114:03","dustDensity":"81.25"},
+  const expData1 = {
+    labels: ["수도","전기"],
+    datasets: [
+      {
+        labels: ["수도","전기"],
+        data: [sumWaterFlow, sumW], //environment.length==18
+        borderWidth: 0,
+        hoverBorderWidth: 3,
+        backgroundColor: [
+          colors.indigo[600],
+          colors.yellow[400]
+        ],
+        fill: true,
+        barPercentage: 0.6, //막대기 굵기
+      },
+    ],
+  };
 
-  render() {
-    const { environment } = this.state; //배열이 들어감
-    let sumWaterFlow = 0;
-    let sumW = 0;
-    for (let i = 0; i < environment.length; i++) {
-      sumWaterFlow += parseFloat(environment[i]["watertFlow"]); //유량
-      sumW += parseFloat(environment[i]["w"]); // 전력
-    }
-
-    const expData1 = {
-      labels: ["수도","전기"],
-      datasets: [
-        {
-          labels: ["수도","전기"],
-          data: [sumWaterFlow, sumW], //environment.length==18
-          borderWidth: 2,
-          hoverBorderWidth: 3,
-          backgroundColor: [
-            "#0000FF",
-            "rgba(255, 255, 0)"
-          ],
-          fill: true,
-          barPercentage: 0.6, //막대기 굵기
-        },
-      ],
-    };
-
-    return (
+  return (
       
-      <div>
-        <Grid container spacing={4}>
-          <Grid item lg={12}>
-            <CardHeader title= "총 Energy사용량" />
-            <Bar
+    <Card
+    className={classes.root}
+    >
+      <CardHeader
+        //action={componentReturnFunction("Last 7 days")} // 함수를 호출해서 넘기는것..
+        title={
+            <div style={{display:"flex",alignItems:"center"}}>
+                <div>총 Energy사용량</div>
+                <div style={{flexGrow:1}}></div>
+            </div>
+        }
+      >
+      </CardHeader>
+      <Divider />
+      <div className={classes.chartContainer}>
+        <Bar
               options={{
+                maintainAspectRatio: false,
                 legend: {
                   display: false,
                   position: "right",
                 },
               }}
               data={expData1}
-              height={120}
             />
-          </Grid>
-          {/* <Grid item lg={6}>
-            <Radar data={expData2} />
-          </Grid> */}
-          {/* {JSON.stringify(environment)} */}
-          <br />
-{/* 
-          <Grid item lg={6}>
-            <PolarView />
-          </Grid> */}
-        </Grid>
-      </div>
-
+        </div>
+      </Card>
+            
     );
-  }
 }
 
 export default DataView;

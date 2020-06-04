@@ -10,7 +10,9 @@ import {
   CardContent,
   CardActions,
   Divider,
-  Button
+  Button,
+  colors,
+  Typography
 } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
@@ -22,11 +24,7 @@ import {useInterval} from 'common/utils';
 const useStyles = makeStyles(() => ({
   root: {},
   chartContainer: {
-    height: 200,
-    position: 'relative'
-  },
-  actions: {
-    justifyContent: 'flex-end'
+    height: 500
   }
 }));
 
@@ -38,7 +36,7 @@ function getRandomInt(min, max) {
 }
 
 const CurrentEnergy = props => {
-  const { className, ...rest } = props; 
+  const { className } = props; 
 
   const classes = useStyles();
 
@@ -65,7 +63,7 @@ useInterval(() => {
       const newChartData1 = [];
       const newLabelData = [];
 
-      response.data.forEach((row,index) => {
+      response.data.slice(0,50).forEach((row,index) => {
         newLabelData.push(row.time+":"+index);
         newChartData.push(row.watertFlow);
         newChartData1.push(row.w);
@@ -85,22 +83,22 @@ useInterval(() => {
 }, 3000)
 
   return (
-    <div
-      {...rest}
+    <Card
       className={clsx(classes.root, className)}
     >
       <CardHeader
         //action={componentReturnFunction("Last 7 days")} // 함수를 호출해서 넘기는것..
-        action={  // 부모가 하나
-          <Button // 참조..
-            size="small"
-            variant="text"
-          >
-            real time <AccessAlarmIcon />
-          </Button>
+        title={
+            <div style={{display:"flex",alignItems:"center"}}>
+                <div>Energy</div>
+                <div style={{flexGrow:1}}></div>
+                <div>Realtime</div>
+                &nbsp;
+                <AccessAlarmIcon />
+            </div>
         }
-        title= "Energy"
-      />
+      >
+      </CardHeader>
       <Divider />
       
         <div className={classes.chartContainer}>
@@ -109,13 +107,15 @@ useInterval(() => {
               labels: labelData,
               datasets: [
                 {
-                  label: 'watertFlow',
-                  backgroundColor: "#0000FF",//'#42a5f5',//palette.primary.main,
+                  label: '수도',
+                  fill:false,
+                  borderColor:colors.indigo[600],
                   data: chartData
                 },
                 {
-                    label: 'w',
-                    backgroundColor: '#FFFF00',//'#42a5f5',//palette.primary.main,
+                    label: '전기',
+                    fill:false,
+                    borderColor:colors.yellow[400],
                     data: chartData1
                 }
               ]
@@ -123,7 +123,7 @@ useInterval(() => {
             options={options}
           />
         </div>
-      </div>
+      </Card>
   );
 };
 
