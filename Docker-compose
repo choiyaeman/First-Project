@@ -1,0 +1,27 @@
+version: "3"
+services:
+  tom:
+    image: tomcat:jdk11
+    container_name: tom2
+    ports:
+      - "8182:8080"
+    hostname: tomcat
+    networks:
+      - fpt
+
+  mdb:
+    image: mongo
+    container_name: mdb2
+    ports:
+      - "27017:27017"
+    hostname: mongo
+    volumes:
+      - $HOME/data/mongo:/data/db
+    networks:
+      - fpt
+
+    restart: always
+
+networks:
+  fpt:
+    external: true
