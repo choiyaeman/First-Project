@@ -73,6 +73,7 @@ export default function CustomizedSwitches() {
   // 처음에 꺼져있는 상태로 설정
   const [ledSwitch, setLedSwitch] = useState(false);
   const [airSwitch, setAirSwitch] = useState(false);
+  const [allSwitch, setAllSwitch] = useState(false);
 
   //초기값 셋팅, useEffect 는 리액트 컴포넌트가 렌더링 될 때마다 특정 작업을 수행하도록 설정 할 수 있는 Hook이다.
   useEffect(() => {
@@ -85,9 +86,13 @@ export default function CustomizedSwitches() {
     setLedSwitch(true);
   }, []);
 
-  const handleLedSwitch = async (evt) => {
-    const currentSwitchValue = !ledSwitch;  // currentSwitchValue란 현재 스위치 값은 켜져있다라는 의미..
-    setLedSwitch(!ledSwitch);
+  const handleLedSwitch = async (evt, value) => {
+    let currentSwitchValue = !ledSwitch;
+    if(value != null){
+      currentSwitchValue = value;
+    }
+    setLedSwitch(currentSwitchValue);
+    // currentSwitchValue란 현재 스위치 값은 켜져있다라는 의미..
 
     let ledResult;
     // 호출부
@@ -102,9 +107,12 @@ export default function CustomizedSwitches() {
     console.log(ledResult);
 
   }
-  const handleAirSwitch = async (evt) => {
-    const currentAirValue = !airSwitch;
-    setAirSwitch(!airSwitch);
+  const handleAirSwitch = async (evt, value) => {
+    let currentAirValue = !airSwitch;
+    if(value != null){
+      currentAirValue = value;
+    }
+    setAirSwitch(currentAirValue);
     // 호출부
     let moterResult;
     if (currentAirValue) {
@@ -117,11 +125,26 @@ export default function CustomizedSwitches() {
     console.log(moterResult);
   }
 
+  const handleAllSwitch = (evt) => {
+    const currentAllSwitchValue = !allSwitch;
+    setAllSwitch(currentAllSwitchValue);
+    handleAirSwitch(null,currentAllSwitchValue);
+    handleLedSwitch(null,currentAllSwitchValue);
+  }
+
   return (
     <Card>
       <CardHeader
         avatar={<SettingsIcon />}
-        title={<Typography variant="h5">Controllers</Typography>}
+        title={
+          <div className={classes.container}>
+          <div>Controllers</div>
+          <div style={{flexGrow:1}}></div>
+          <div>전체제어</div>
+          &nbsp;
+          <AntSwitch checked={allSwitch} onChange={handleAllSwitch} name="allSwitch" />
+          </div>
+        }
       >
       </CardHeader>
       <Divider />
