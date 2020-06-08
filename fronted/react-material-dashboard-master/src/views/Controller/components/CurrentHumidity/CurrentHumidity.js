@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import { Avatar, Card, CardContent, colors, Grid, Typography } from '@material-ui/core';
+import OpacityIcon from '@material-ui/icons/Opacity';
 import { makeStyles } from '@material-ui/styles';
-import { Card, CardContent, Grid, Typography, Avatar, colors } from '@material-ui/core';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import PeopleIcon from '@material-ui/icons/PeopleOutlined';
 import axios from 'axios';
+import clsx from 'clsx';
 import { useInterval } from 'common/utils';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   avatar: {
-    backgroundColor: theme.palette.success.main,
+    backgroundColor: colors.blue[500],
     height: 56,
     width: 56
   },
@@ -54,7 +53,7 @@ const CurrentHumidity = props => {
   useInterval(() => {
     axios.get("http://localhost:8080/SpringMongo2/selectTest")
     .then(response => {
-      setHumidityData(response.data[0])//[response.data.length-1])
+      setHumidityData(response.data[response.data.length-1])
     });
   }, 3000)
 
@@ -91,7 +90,7 @@ const CurrentHumidity = props => {
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <PeopleIcon className={classes.icon} />
+              <OpacityIcon className={classes.icon} />
             </Avatar>
           </Grid>
         </Grid>

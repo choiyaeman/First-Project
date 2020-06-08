@@ -1,21 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import React from 'react';
+import { CurrentEnergy, CurrentEnvironment, DataView, PolarView } from './components';
 
-import {
-  TotalProfit,
-  LatestSales,
-  UsersByDevice,
-  LatestProducts,
-  LatestOrders,
-  SecondChart,
-  ThirdChart,
-  DataView,
-  PolarView,
-  CurrentEnvironment
-} from './components';
-import CurrentEnergy from './components/CurrentEnergy';
-import TotalView from './components/TotalView';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -46,7 +33,7 @@ const Dashboard = () => {
           md={12}
           xs={12}
         >
-          <TotalView />
+          <PolarView />
         </Grid>
         <Grid
           item

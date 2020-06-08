@@ -89,9 +89,6 @@ const Controller = () => { // () 인자로 받는다는 의미 받아서 밑에 
 
         <Grid
           item    // 12칸중에 몇칸을 차지하는지
-          lg={12}  //lg : largedevice를 의미
-          md={6}  // md : tablet
-          xl={4}
           xs={12}
         >
           <SmartHome />
