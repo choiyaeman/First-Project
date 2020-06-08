@@ -64,16 +64,16 @@ useInterval(() => {
       const newChartData = [];
       const newLabelData = [];
 
-      response.data.slice(0,50).forEach((row,index) => {
+      response.data.slice(-50).forEach((row,index) => {
         newLabelData.push(row.time+":"+index);
         newChartData.push(row.temperature);
        // newChartData.push(getRandomInt(10,35));
       });
       
-      setChartData(newChartData.reverse());
-      setLabelData(newLabelData.reverse());
-      // setChartData(newChartData);
-      // setLabelData(newLabelData);
+      // setChartData(newChartData.reverse());
+      // setLabelData(newLabelData.reverse());
+      setChartData(newChartData);
+      setLabelData(newLabelData);
     });
 }, 3000)
 

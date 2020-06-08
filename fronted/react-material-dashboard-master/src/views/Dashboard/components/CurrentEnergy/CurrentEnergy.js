@@ -63,18 +63,19 @@ useInterval(() => {
       const newChartData1 = [];
       const newLabelData = [];
 
-      response.data.slice(0,50).forEach((row,index) => {
+      response.data.slice(-50).forEach((row,index) => {
         newLabelData.push(row.time);
         newChartData.push(row.watertFlow);
-        newChartData1.push(row.w);
+        newChartData1.push(row.wtime);
        // newChartData.push(getRandomInt(10,35));
       });
 
-      setChartData(newChartData.reverse());
-      setChartData1(newChartData1.reverse());
-      setLabelData(newLabelData.reverse());
-      // setChartData(newChartData);
-      // setLabelData(newLabelData);
+      // setChartData(newChartData.reverse());
+      // setChartData1(newChartData1.reverse());
+      // setLabelData(newLabelData.reverse());
+      setChartData(newChartData);
+      setChartData1(newChartData1);
+      setLabelData(newLabelData);
     });
 }, 3000)
 

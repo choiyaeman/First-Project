@@ -2,6 +2,7 @@ import { Card, CardHeader, colors, Divider } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import { useInterval } from "common/utils";
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -16,7 +17,7 @@ const DataView = (props) => {
 
   const classes = useStyles();
 
-  useEffect(() => {
+  useInterval(() => {
     fetch("http://localhost:8080/SpringMongo2/selectTest")
       .then((res) => res.json())
       .then(

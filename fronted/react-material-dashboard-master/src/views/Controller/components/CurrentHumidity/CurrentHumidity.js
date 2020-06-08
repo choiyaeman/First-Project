@@ -53,7 +53,7 @@ const CurrentHumidity = props => {
   useInterval(() => {
     axios.get("http://localhost:8080/SpringMongo2/selectTest")
     .then(response => {
-      setHumidityData(response.data[0])//[response.data.length-1])
+      setHumidityData(response.data[response.data.length-1])
     });
   }, 3000)
 

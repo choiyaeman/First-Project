@@ -54,7 +54,7 @@ const CurrentDust = props => {
   useInterval(() => { 
     axios.get("http://localhost:8080/SpringMongo2/selectTest")
     .then(response => {
-      setDustData(response.data[0])//[response.data.length-1])
+      setDustData(response.data[response.data.length-1]) //response.data[0])
     });
   }, 3000)
 
