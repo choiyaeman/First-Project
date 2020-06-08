@@ -68,23 +68,6 @@ class TotalView extends React.Component {
       
       <div>
         <Grid container spacing={4}>
-          {/* <Grid item lg={12}>
-            <CardHeader title= "총 Energy사용량" />
-            <Bar
-              options={{
-                legend: {
-                  display: false,
-                  position: "right",
-                },
-              }}
-              data={expData1}
-              height={120}
-            />
-          </Grid> */}
-          {/* <Grid item lg={6}>
-            <Radar data={expData2} />
-          </Grid> */}
-          {/* {JSON.stringify(environment)} */}
           <br />
 
           <Grid item lg={12}>

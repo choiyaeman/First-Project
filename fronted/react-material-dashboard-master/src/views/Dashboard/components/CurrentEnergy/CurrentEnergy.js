@@ -64,19 +64,15 @@ useInterval(() => {
       const newLabelData = [];
 
       response.data.slice(0,50).forEach((row,index) => {
-        newLabelData.push(row.time+":"+index);
+        newLabelData.push(row.time);
         newChartData.push(row.watertFlow);
         newChartData1.push(row.w);
        // newChartData.push(getRandomInt(10,35));
       });
 
-      const reversedLabel = newLabelData.reverse();     // 배열 원소 순서를 거꾸로
-      const reversedChartData = newChartData.reverse();
-      const reversedChartData1 = newChartData1.reverse();
-
-      setChartData(reversedChartData);
-      setChartData1(reversedChartData1);
-      setLabelData(reversedLabel);
+      setChartData(newChartData.reverse());
+      setChartData1(newChartData1.reverse());
+      setLabelData(newLabelData.reverse());
       // setChartData(newChartData);
       // setLabelData(newLabelData);
     });
@@ -89,7 +85,10 @@ useInterval(() => {
       <CardHeader
         //action={componentReturnFunction("Last 7 days")} // 함수를 호출해서 넘기는것..
         title={
-            <div style={{display:"flex",alignItems:"center"}}>
+            // flex: Block 특성의 Flex Container를 정의
+            // alignItems: 진행 축과 교차하는 ‘교차 축’ 정렬을 제어
+            // flex-grow CSS property 는 flex-item 요소가, flex-container 요소 내부에서 할당 가능한 공간의 정도를 선언
+            <div style={{display:"flex",alignItems:"center"}}> 
                 <div>Energy</div>
                 <div style={{flexGrow:1}}></div>
                 <div>Realtime</div>

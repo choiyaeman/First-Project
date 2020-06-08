@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Avatar, Typography } from '@material-ui/core';
+import { AvatarGroup } from '@material-ui/lab';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,9 +28,9 @@ const Profile = props => {
   const classes = useStyles();
 
   const user = {
-    name: 'yaeman choi',
+    name: 'DBMS',
     avatar: '/images/avatars/avatar_12.jpg',
-    bio: 'Brain Director'
+    bio: 'Team members'
   };
 
   return (
@@ -37,13 +38,22 @@ const Profile = props => {
       {...rest}
       className={clsx(classes.root, className)}
     >
-      <Avatar
+      {/* <Avatar
         alt="Person"
         className={classes.avatar}
         component={RouterLink}
         src={user.avatar}
-        to="/settings"
+        to="/settings" 
+      /> */}
+      <AvatarGroup max={5}>
+        <Avatar alt="Remy Sharp" src="/images/avatars/avatar_1.png" />
+        <Avatar alt="Travis Howard" src="/images/avatars/avatar_2.png" />
+        <Avatar alt="Cindy Baker" src="/images/avatars/avatar_3.png" />
+        <Avatar alt="Agnes Walker" src="/images/avatars/avatar_4.png" />
+        <Avatar alt="Trevor Henderson" src="/images/avatars/avatar_5.png.jpg" />
       />
+      </AvatarGroup>
+
       <Typography
         className={classes.name}
         variant="h4"

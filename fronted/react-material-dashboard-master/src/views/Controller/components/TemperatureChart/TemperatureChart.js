@@ -64,16 +64,14 @@ useInterval(() => {
       const newChartData = [];
       const newLabelData = [];
 
-      response.data.forEach((row,index) => {
+      response.data.slice(0,50).forEach((row,index) => {
         newLabelData.push(row.time+":"+index);
         newChartData.push(row.temperature);
        // newChartData.push(getRandomInt(10,35));
       });
-      const reversedLabel = newLabelData.reverse();     // 배열 원소 순서를 거꾸로
-      const reversedChartData = newChartData.reverse();
-
-      setChartData(reversedChartData);
-      setLabelData(reversedLabel);
+      
+      setChartData(newChartData.reverse());
+      setLabelData(newLabelData.reverse());
       // setChartData(newChartData);
       // setLabelData(newLabelData);
     });
@@ -86,15 +84,15 @@ useInterval(() => {
     >
       <CardHeader
         //action={componentReturnFunction("Last 7 days")} // 함수를 호출해서 넘기는것..
-        action={  // 부모가 하나
-          <Button // 참조..
-            size="small"
-            variant="text"
-          >
-            real time <AccessAlarmIcon />
-          </Button>
+        title= {
+          <div style={{display:"flex", alignItems:"center"}}>
+              <div>Temperature</div>
+              <div style={{flexGrow:1}}></div>
+              <div>Realtime</div>
+              &nbsp;
+              <AccessAlarmIcon />
+          </div>
         }
-        title= "Temperature"
       />
       <Divider />
       <CardContent>

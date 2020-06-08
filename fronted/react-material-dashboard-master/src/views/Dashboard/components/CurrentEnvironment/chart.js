@@ -38,8 +38,8 @@ export const options = {  //이름으로 export
         categoryPercentage: 0.5,
         ticks: {
           fontColor: palette.text.secondary,
-          autoSkip: true,
-          maxTicksLimit: 20
+          autoSkip: true, //자동으로 숫자 건너뛰기
+          maxTicksLimit: 20 //xAxes에 출력할 숫자 20개로 제한
         },
         gridLines: {
           display: true,
@@ -52,7 +52,7 @@ export const options = {  //이름으로 export
         ticks: {
           fontColor: palette.text.secondary,
           beginAtZero: true,
-          min: 0
+          
         },
         gridLines: {
           borderDash: [2],

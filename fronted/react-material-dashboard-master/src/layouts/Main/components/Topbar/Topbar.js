@@ -62,7 +62,7 @@ const Topbar = props => {
               variant="h1"
             >
           
-            DBMS
+            SmartHome
             </Typography>
             {/* <img
               alt="Logo"
@@ -71,7 +71,7 @@ const Topbar = props => {
           </RouterLink>
         </div>
         <div className={classes.flexGrow} />
-        <Hidden mdDown>
+        {/* <Hidden mdDown>
           <IconButton color="inherit">
             <Badge
               badgeContent={notifications.length}
@@ -95,7 +95,7 @@ const Topbar = props => {
           >
             <MenuIcon />
           </IconButton>
-        </Hidden>
+        </Hidden> */}
       </Toolbar>
     </AppBar>
   );

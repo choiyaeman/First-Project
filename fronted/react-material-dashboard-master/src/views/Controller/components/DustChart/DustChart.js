@@ -64,7 +64,7 @@ const DustChart = props => {
         const newChartData = [];
         const newLabelData = [];
   
-        response.data.forEach((row,index) => {
+        response.data.slice(0,50).forEach((row,index) => {
           newLabelData.push(row.time+":"+index);
            newChartData.push(row.dustDensity);
           //newChartData.push(getRandomInt(0,60));
@@ -72,10 +72,9 @@ const DustChart = props => {
   
         // setChartData(newChartData);
         // setLabelData(newLabelData);
-        const reverseChartData = newChartData.reverse();
-        const reverseLabelData = newLabelData.reverse();
-        setChartData(reverseChartData);
-        setLabelData(reverseLabelData);
+        
+        setChartData(newChartData.reverse());
+        setLabelData(newLabelData.reverse());
       });
   }, 3000)
 
@@ -86,15 +85,15 @@ const DustChart = props => {
     >
       <CardHeader
         //action={componentReturnFunction("Last 7 days")} // 함수를 호출해서 넘기는것..
-        action={  // 부모가 하나
-          <Button // 참조..
-            size="small"
-            variant="text"
-          >
-            real time <AccessAlarmIcon />
-          </Button>
+        title={
+          <div style={{display:"flex", alignItems:"center"}}>
+            <div>Dust</div>
+            <div style={{flexGrow:1}}></div>
+            <div>Realtime</div>
+            &nbsp;
+            <AccessAlarmIcon />
+          </div>
         }
-        title= "Dust"
       />
       <Divider />
       <CardContent>

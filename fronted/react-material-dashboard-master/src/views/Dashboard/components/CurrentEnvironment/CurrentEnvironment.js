@@ -65,22 +65,17 @@ useInterval(() => {
       const newLabelData = [];
 
       response.data.slice(0,50).forEach((row,index) => {
-        newLabelData.push(row.time+":"+index);
+        newLabelData.push(row.time);
         newChartData.push(row.temperature);
         newChartData1.push(row.humidity);
         newChartData2.push(row.dustDensity);
        // newChartData.push(getRandomInt(10,35));
       });
 
-      const reversedLabel = newLabelData.reverse();     // 배열 원소 순서를 거꾸로
-      const reversedChartData = newChartData.reverse();
-      const reversedChartData1 = newChartData1.reverse();
-      const reversedChartData2 = newChartData2.reverse();
-
-      setChartData(reversedChartData);
-      setChartData1(reversedChartData1);
-      setChartData2(reversedChartData2);
-      setLabelData(reversedLabel);
+      setChartData(newChartData.reverse());
+      setChartData1(newChartData1.reverse());
+      setChartData2(newChartData2.reverse());
+      setLabelData(newLabelData.reverse());
       // setChartData(newChartData);
       // setLabelData(newLabelData);
     });
@@ -126,7 +121,7 @@ useInterval(() => {
                 {
                     label: '미세먼지',
                     fill: false,
-                    borderColor: colors.grey[500],//'#42a5f5',//palette.primary.main,
+                    borderColor: colors.grey[500],
                     data: chartData2
                 }
               ]
