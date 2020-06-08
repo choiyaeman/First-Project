@@ -70,7 +70,7 @@ export default function CustomizedSwitches() {
 
   const classes = useStyles();
 
-  // 처음에 꺼져있는 상태로 설정
+  // 처음에 꺼져있는 상태로 설정.
   const [ledSwitch, setLedSwitch] = useState(false);
   const [airSwitch, setAirSwitch] = useState(false);
   const [allSwitch, setAllSwitch] = useState(false);
