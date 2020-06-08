@@ -125,7 +125,7 @@ export default function CustomizedSwitches() {
     console.log(moterResult);
   }
 
-  const handleAllSwitch = (evt) => {
+  const handleAllSwitch = (evt) => {            // 전체 제어
     const currentAllSwitchValue = !allSwitch;
     setAllSwitch(currentAllSwitchValue);
     handleAirSwitch(null,currentAllSwitchValue);
