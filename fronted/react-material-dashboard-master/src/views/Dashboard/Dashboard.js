@@ -1,19 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import React from 'react';
+import { CurrentEnergy, CurrentEnvironment, DataView, PolarView } from './components';
 
-import {
-  Temperature,
-  Humidity,
-  Dust,
-  TotalProfit,
-  LatestSales,
-  UsersByDevice,
-  LatestProducts,
-  LatestOrders,
-  SecondChart,
-  ThirdChart
-} from './components';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,79 +21,32 @@ const Dashboard = () => {
       >
         <Grid
           item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <Temperature />
-        </Grid>
-        <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <Humidity />
-        </Grid>
-        <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <Dust />
-        </Grid>
-        <Grid
-          item
-          lg={3}
-          sm={6}
-          xl={3}
-          xs={12}
-        >
-          <TotalProfit />
-        </Grid>
-        <Grid
-          item
-          lg={8}
+          lg={6}
           md={12}
-          xl={9}
           xs={12}
         >
-          <LatestSales />
+          <DataView />
         </Grid>
         <Grid
           item
-          lg={4}
-          md={6}
-          xl={3}
-          xs={12}
-        >
-          <UsersByDevice />
-        </Grid>
-        <Grid
-          item
-          lg={8}
+          lg={6}
           md={12}
-          xl={9}
           xs={12}
         >
-          <SecondChart />
+          <PolarView />
         </Grid>
-
         <Grid
           item
-          lg={4}
-          md={12}
-          xl={9}
           xs={12}
         >
-          <ThirdChart />
+          <CurrentEnergy />
         </Grid>
-     
-
+        <Grid
+          item
+          xs={12}
+        >
+          <CurrentEnvironment />
+        </Grid>
       </Grid>
     </div>
   );

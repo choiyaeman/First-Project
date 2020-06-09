@@ -6,13 +6,17 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { List, ListItem, Button, colors } from '@material-ui/core';
+import { prototype } from 'chart.js';
 
 const useStyles = makeStyles(theme => ({
   root: {},
   item: {
     display: 'flex',
     paddingTop: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
+    '&:last-child': {
+      marginTop:'auto'
+    }
   },
   button: {
     color: colors.blueGrey[800],
@@ -81,14 +85,16 @@ props : { //객체는 다 중괄호로.. list는 대괄호
             {page.title}
           </Button>
         </ListItem>
+        
       ))}
+
     </List>
   );
 };
 
 SidebarNav.propTypes = {
   className: PropTypes.string,
-  pages: PropTypes.array.isRequired
+  pages: PropTypes.array.isRequired,
 };
 
 export default SidebarNav;

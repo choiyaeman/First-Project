@@ -11,6 +11,11 @@ const theme = createMuiTheme({
   zIndex: {
     appBar: 1200,
     drawer: 1100
+  },
+  centerContainer: {
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center"
   }
 });
 
