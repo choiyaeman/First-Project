@@ -46,7 +46,7 @@ const Profile = props => {
         to="/settings" 
       /> */}
       <AvatarGroup max={5}>
-        <Avatar alt="Remy Sharp" src="/images/avatars/avatar_1.png" />
+        <Avatar alt="Remy Sharp" src="/images/avatars/choiyaeman.jpg" />
         <Avatar alt="Travis Howard" src="/images/avatars/avatar_2.png" />
         <Avatar alt="Cindy Baker" src="/images/avatars/avatar_3.png" />
         <Avatar alt="Agnes Walker" src="/images/avatars/avatar_4.png" />
