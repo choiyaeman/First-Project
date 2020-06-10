@@ -2,15 +2,8 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
-import { Divider, Drawer, Typography } from '@material-ui/core';
+import { Divider, Drawer, Typography, colors } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import PeopleIcon from '@material-ui/icons/People';
-//import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-//import TextFieldsIcon from '@material-ui/icons/TextFields';
-//import ImageIcon from '@material-ui/icons/Image';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import SettingsIcon from '@material-ui/icons/Settings';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
 import HomeIcon from '@material-ui/icons/Home';
 import { Profile, SidebarNav, UpgradePlan } from './components';
 import {getRandomInt, useInterval} from 'common/utils';
@@ -77,18 +70,31 @@ const Sidebar = props => {
   const discomfortIndex = (1.8*discomfort.temperature-0.55*(1-discomfort.humidity/100)*(1.8*discomfort.temperature-26)+32).toFixed(1); //불쾌지수 계산식
   const dustIndex = dustValue.dustDensity;
 
-  // const pickColor = (dustDensity) => {
-  //   if(dustDensity > 80) {
-  //     return colors.red[500];
-  //   } else if(dustDensity > 75) {
-  //     return colors.ora[500];
-  //   } else if(dustDensity > 70) {
-  //     return colors.blue[500];
-  //   }
-  // }
+  const discomfortColor = (discomfortIndex) => {
+    if(discomfortIndex > 80) {
+      return colors.red[500];
+    } else if(discomfortIndex > 75) {
+      return colors.orange[500];
+    } else if(discomfortIndex > 70) {
+      return colors.yellow[500];
+    } else{
+      return colors.green[500];
+    }
+  }
   
+  const dustColor = (dustIndex) => {
+    if(dustIndex > 250) {
+      return colors.red[500];
+    } else if(dustIndex > 100) {
+      return colors.orange[500];
+    } else if(dustIndex > 50) {
+      return colors.yellow[500];
+    } else {
+      return colors.green[500];
+    }
+  }
 
-  const discomfortImage = () => {
+  const discomfortImage = () => { // 불쾌지수 이미지 나타내기
     if(discomfortIndex > 80){
       return <img widht="48px" height="48px" src='/images/avatars/Very_bad.png'/>;
     } else if (discomfortIndex > 75){
@@ -100,15 +106,15 @@ const Sidebar = props => {
     }
   };
 
-  const discomfortImage1 = () => {
+  const dustImage = () => { // 미세먼지 이미지 나타내기
     if(dustIndex > 250){
-      return <img widht="48px" height="48px" src='/images/avatars/Very_bad.png'/>;
+      return <img widht="48px" height="48px" src='/images/avatars/dust_Very Bad.png'/>;
     } else if (dustIndex > 100){
-      return <img widht="48px" height="48px" src='/images/avatars/Bad.png'/>;
+      return <img widht="48px" height="48px" src='/images/avatars/dust_Bad.png'/>;
     } else if (dustIndex > 50){
-      return <img widht="48px" height="48px" src='/images/avatars/usually.png'/>;
+      return <img widht="48px" height="48px" src='/images/avatars/dust_usually.png'/>;
     } else {
-      return <img widht="48px" height="48px" src='/images/avatars/good.png'/>;
+      return <img widht="48px" height="48px" src='/images/avatars/dust_Very Good.png'/>;
     }
   }
   //const discomfortIndex = getRandomInt(60,85);
@@ -147,7 +153,7 @@ const Sidebar = props => {
         
         <Typography variant="h3" align="center" gutterBottom>불쾌지수</Typography>
         <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-        <Typography variant="h1" align="center">{discomfortIndex}</Typography>
+        <Typography variant="h1" align="center" style={{color:discomfortColor(discomfortIndex)}}>{discomfortIndex}</Typography>
         &nbsp;&nbsp;
           {discomfortImage()}
         </div>
@@ -155,9 +161,9 @@ const Sidebar = props => {
         <Divider className={classes.divider} />
         <Typography variant="h3" align="center" gutterBottom>미세먼지</Typography>
         <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
-        <Typography variant="h1" align="center">{dustIndex}</Typography>
+        <Typography variant="h1" align="center" style={{color:dustColor(dustIndex)}}>{dustIndex}</Typography>
         &nbsp;&nbsp;
-          {discomfortImage1()}
+          {dustImage()}
         </div>
         
       </div>
