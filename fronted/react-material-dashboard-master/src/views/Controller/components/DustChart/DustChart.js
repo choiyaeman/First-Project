@@ -65,8 +65,8 @@ const DustChart = props => {
         const newLabelData = [];
   
         response.data.slice(-50).forEach((row,index) => {
-          newLabelData.push(row.time+":"+index);
-           newChartData.push(row.dustDensity);
+          newLabelData.push(row.time); //(row.time+":"+index);
+          newChartData.push(row.dustDensity);
           //newChartData.push(getRandomInt(0,60));
         });
   

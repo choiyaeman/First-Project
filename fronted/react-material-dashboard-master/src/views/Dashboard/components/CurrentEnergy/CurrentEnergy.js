@@ -65,7 +65,7 @@ useInterval(() => {
 
       response.data.slice(-50).forEach((row,index) => {
         newLabelData.push(row.time);
-        newChartData.push(row.watertFlow);
+        newChartData.push(row.waterFlow);
         newChartData1.push(row.wtime);
        // newChartData.push(getRandomInt(10,35));
       });
