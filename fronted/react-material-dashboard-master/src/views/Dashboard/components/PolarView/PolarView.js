@@ -7,7 +7,7 @@ import { Polar } from "react-chartjs-2";
 const useStyles = makeStyles(() => ({
   root: {},
   chartContainer: {
-    height:300
+    height:500
   }
 }));
 
@@ -40,21 +40,22 @@ const PolarView = (props) => {
           parseFloat(environment["temperature"]),
           parseFloat(environment["humidity"]),
           parseFloat(environment["dustDensity"]), //숫자로 변형하자
-          parseFloat(environment["watertFlow"]),
-          parseFloat(environment["w"])
+          // parseFloat(environment["waterFlow"]),
+          // parseFloat(environment["wtime"])
         ],
         backgroundColor: [
           colors.red[500], //Red
           colors.green[500], //Green
           colors.grey[500], //DeepGrey
-          colors.blue[500], //blue
-          colors.yellow[500], //yellow
+          // colors.blue[500], //blue
+          // colors.yellow[500], //yellow
         ],
-        label: "온도, 습도, 미세먼지, 유량, 전력", // for legend
+        label: "온도, 습도, 미세먼지", // for legend
       },
     ],
-    labels: ["온도", "습도", "미세먼지", "유량", "전력"],
+    labels: ["온도", "습도", "미세먼지"],
   };
+
 
   return (
       
@@ -65,7 +66,7 @@ const PolarView = (props) => {
         //action={componentReturnFunction("Last 7 days")} // 함수를 호출해서 넘기는것..
         title={
             <div style={{display:"flex",alignItems:"center"}}>
-                <div>전체환경</div>
+                <div>현재 Environment</div>
                 <div style={{flexGrow:1}}></div>
             </div>
         }
@@ -74,6 +75,7 @@ const PolarView = (props) => {
       <Divider />
       <div className={classes.chartContainer}>
       <Polar data={expData3} />
+
         </div>
       </Card>
             

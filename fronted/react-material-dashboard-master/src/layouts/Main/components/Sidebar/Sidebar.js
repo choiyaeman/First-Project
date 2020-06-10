@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2)
   },
   divider: {
-    margin: theme.spacing(2, 0)
+    margin: theme.spacing(4, 0)
   },
   nav: {
     marginBottom: theme.spacing(2)
@@ -62,14 +62,31 @@ const Sidebar = props => {
     humidity:-100
   });
 
+  const [dustValue, setDustValue] =  useState({
+    dustDensity: -999
+  });
+
   useInterval(() => {
     axios.get("http://localhost:8080/SpringMongo2/selectTest")
     .then(response => {
-      setDiscomfort(response.data[0]);
+      setDiscomfort(response.data[response.data.length-1]);
+      setDustValue(response.data[response.data.length-1]);
     });
   }, 3000)
 
   const discomfortIndex = (1.8*discomfort.temperature-0.55*(1-discomfort.humidity/100)*(1.8*discomfort.temperature-26)+32).toFixed(1); //불쾌지수 계산식
+  const dustIndex = dustValue.dustDensity;
+
+  // const pickColor = (dustDensity) => {
+  //   if(dustDensity > 80) {
+  //     return colors.red[500];
+  //   } else if(dustDensity > 75) {
+  //     return colors.ora[500];
+  //   } else if(dustDensity > 70) {
+  //     return colors.blue[500];
+  //   }
+  // }
+  
 
   const discomfortImage = () => {
     if(discomfortIndex > 80){
@@ -83,6 +100,17 @@ const Sidebar = props => {
     }
   };
 
+  const discomfortImage1 = () => {
+    if(dustIndex > 250){
+      return <img widht="48px" height="48px" src='/images/avatars/Very_bad.png'/>;
+    } else if (dustIndex > 100){
+      return <img widht="48px" height="48px" src='/images/avatars/Bad.png'/>;
+    } else if (dustIndex > 50){
+      return <img widht="48px" height="48px" src='/images/avatars/usually.png'/>;
+    } else {
+      return <img widht="48px" height="48px" src='/images/avatars/good.png'/>;
+    }
+  }
   //const discomfortIndex = getRandomInt(60,85);
 
   // const discomfortImage = (index) => {
@@ -123,6 +151,15 @@ const Sidebar = props => {
         &nbsp;&nbsp;
           {discomfortImage()}
         </div>
+
+        <Divider className={classes.divider} />
+        <Typography variant="h3" align="center" gutterBottom>미세먼지</Typography>
+        <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+        <Typography variant="h1" align="center">{dustIndex}</Typography>
+        &nbsp;&nbsp;
+          {discomfortImage1()}
+        </div>
+        
       </div>
     </Drawer>
   );

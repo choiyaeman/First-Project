@@ -53,7 +53,7 @@ useInterval(() => {
       const newLabelData = [];
 
       response.data.slice(-50).forEach((row, index) => {
-        newLabelData.push(row.time+":"+index);
+        newLabelData.push(row.time);
         newChartData.push(row.humidity);
         //newChartData.push(getRandomInt(10,90));
       });

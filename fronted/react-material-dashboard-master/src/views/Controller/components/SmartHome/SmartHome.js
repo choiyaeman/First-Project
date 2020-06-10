@@ -97,7 +97,7 @@ export default function CustomizedSwitches() {
     let ledResult;
     // 호출부
     if (currentSwitchValue) {
-      const response = await client.get('https://121.138.83.92:8000/led/on'); //켜졌을때.. flask 서버 api로부터 불러온다..
+      const response = await client.get('https://121.138.83.92:8000/led/on'); //켜졌을때.. flask 서버 api로부터 불러온다.. 
       ledResult = response.data;
     } else {
       const response = await client.get('https://121.138.83.92:8000/led/off');  // 꺼졌을때

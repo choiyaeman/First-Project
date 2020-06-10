@@ -3,17 +3,18 @@ import { makeStyles } from "@material-ui/styles";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { useInterval } from "common/utils";
+import palette from 'theme/palette';
 
 const useStyles = makeStyles(() => ({
   root: {},
   chartContainer: {
-    height:300
+    height:500,
   }
 }));
 
 const DataView = (props) => {
 
-  const [environment, setEnvironment] = useState([]);
+  const [environment, setEnvironment] = useState(""); //useState([]);
 
   const classes = useStyles();
 
@@ -22,30 +23,33 @@ const DataView = (props) => {
       .then((res) => res.json())
       .then(
         (result) => {
-          setEnvironment(result);
+          setEnvironment(result[result.length-1]);
         },
         // 주의: 컴포넌트의 실제 버그에서 발생하는 예외사항들을 넘기지 않도록
         // 에러를 catch() 블록(block)에서 처리하기보다는
         // 이 부분에서 처리하는 것이 중요합니다.
         (error) => {
-          setEnvironment([]);
+          setEnvironment("");//([]);
         }
       );
-  });
+  }, 3000);
 
-  let sumWaterFlow = 0;
-  let sumW = 0;
-  for (let i = 0; i < environment.length; i++) {
-    sumWaterFlow += parseFloat(environment[i]["watertFlow"]); //유량
-    sumW += parseFloat(environment[i]["w"]); // 전력
-  }
+  // let sumWaterFlow = 0;
+  // let sumWtime = 0;
+  // for (let i = 0; i < environment.length; i++) {
+  //   sumWaterFlow += parseFloat(environment[i]["waterFlow"]); //유량
+  //   sumWtime += parseFloat(environment[i]["wtime"]); // 전력
+  // }
 
   const expData1 = {
     labels: ["수도","전기"],
     datasets: [
       {
         labels: ["수도","전기"],
-        data: [sumWaterFlow, sumW], //environment.length==18
+        data: [     
+          parseFloat(environment["waterFlow"]),
+          parseFloat(environment["wtime"])
+        ],
         borderWidth: 0,
         hoverBorderWidth: 3,
         backgroundColor: [
@@ -56,7 +60,48 @@ const DataView = (props) => {
         barPercentage: 0.6, //막대기 굵기
       },
     ],
+    
   };
+
+  const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  legend: { display: false },
+  cornerRadius: 0,
+  tooltips: {
+    enabled: true,
+    mode: 'index',
+    intersect: false,
+    borderWidth: 5,
+    borderColor: palette.divider,
+    backgroundColor: palette.white,
+    titleFontColor: palette.text.primary,
+    bodyFontColor: palette.text.secondary,
+    footerFontColor: palette.text.secondary
+  },
+  layout: { padding: 0 },
+  scales: {
+    
+    yAxes: [
+      {
+        ticks: {
+          fontColor: palette.text.secondary,
+          beginAtZero: true,
+          
+        },
+        gridLines: {
+          borderDash: [2],
+          borderDashOffset: [2],
+          color: palette.divider,
+          drawBorder: true,
+          zeroLineBorderDash: [2],
+          zeroLineBorderDashOffset: [2],
+          zeroLineColor: palette.divider
+        }
+      }
+    ]
+  }
+};
 
   return (
       
@@ -79,11 +124,12 @@ const DataView = (props) => {
               options={{
                 maintainAspectRatio: false,
                 legend: {
-                  display: false,
+                  display: true,
                   position: "right",
                 },
               }}
               data={expData1}
+              options={options}
             />
         </div>
       </Card>
