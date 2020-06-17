@@ -55,16 +55,16 @@ const CurrentTemperature = props => {
   useInterval(() => {
     axios.get("http://localhost:8080/SpringMongo2/selectTest?1=1")
     .then(response => {    
-      setTemperatureData(response.data[response.data.length-1]) // -1 한 이유는 예를들어 배열은 a[0], a[1] ... 0 부터 시작하므로 -1을 해줘야한다. 
+      setTemperatureData(response.data[0])//(response.data[response.data.length-1]) // -1 한 이유는 예를들어 배열은 a[0], a[1] ... 0 부터 시작하므로 -1을 해줘야한다. 
     });
   }, 3000)
 
   const pickColor = (temperature) => {
-    if(temperature > 30) {
+    if(temperature > 30) {      // 더움
       return colors.red[500];
-    } else if(temperature > 20) {
+    } else if(temperature > 20) {   // 최적
       return colors.green[500];
-    } else {
+    } else {    // 추움
       return colors.blue[500];
     }
   }

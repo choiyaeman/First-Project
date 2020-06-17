@@ -64,7 +64,7 @@ useInterval(() => {
       const newChartData2 = [];
       const newLabelData = [];
 
-      response.data.slice(-50).forEach((row,index) => {
+      response.data.slice(0,50).forEach((row,index) => {
         newLabelData.push(row.time);
         newChartData.push(row.temperature);
         newChartData1.push(row.humidity);
@@ -72,14 +72,14 @@ useInterval(() => {
        // newChartData.push(getRandomInt(10,35));
       });
 
-      // setChartData(newChartData.reverse());
-      // setChartData1(newChartData1.reverse());
-      // setChartData2(newChartData2.reverse());
-      // setLabelData(newLabelData.reverse());
-      setChartData(newChartData);
-      setChartData1(newChartData1);
-      setChartData2(newChartData2);
-      setLabelData(newLabelData);
+      setChartData(newChartData.reverse());
+      setChartData1(newChartData1.reverse());
+      setChartData2(newChartData2.reverse());
+      setLabelData(newLabelData.reverse());
+      // setChartData(newChartData);
+      // setChartData1(newChartData1);
+      // setChartData2(newChartData2);
+      // setLabelData(newLabelData);
     });
 }, 3000)
 

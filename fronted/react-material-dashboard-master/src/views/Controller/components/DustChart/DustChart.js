@@ -64,17 +64,17 @@ const DustChart = props => {
         const newChartData = [];
         const newLabelData = [];
   
-        response.data.slice(-50).forEach((row,index) => {
+        response.data.slice(0,50).forEach((row,index) => {
           newLabelData.push(row.time); //(row.time+":"+index);
           newChartData.push(row.dustDensity);
           //newChartData.push(getRandomInt(0,60));
         });
   
-        setChartData(newChartData);
-        setLabelData(newLabelData);
+        // setChartData(newChartData);
+        // setLabelData(newLabelData);
         
-        // setChartData(newChartData.reverse());
-        // setLabelData(newLabelData.reverse());
+        setChartData(newChartData.reverse());
+        setLabelData(newLabelData.reverse());
       });
   }, 3000)
 
@@ -104,7 +104,7 @@ const DustChart = props => {
               datasets: [
                 {
                   label: 'Room Dust',
-                  //fill: false,
+                  fill: false,
                   backgroundColor: colors.brown[700],
                   borderColor: colors.brown[700],//'#42a5f5',//palette.primary.main,
                   data: chartData

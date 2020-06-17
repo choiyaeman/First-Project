@@ -53,16 +53,16 @@ const CurrentHumidity = props => {
   useInterval(() => {
     axios.get("http://localhost:8080/SpringMongo2/selectTest")
     .then(response => {
-      setHumidityData(response.data[response.data.length-1])
+      setHumidityData(response.data[0])//(response.data[response.data.length-1])
     });
   }, 3000)
 
   const pickColor = (humidity) => {
-    if(humidity > 60) {
+    if(humidity > 65) {       // 나쁨
       return colors.red[500];
-    } else if(humidity >39) {
-      return colors.green[500];
-    } else {
+    } else if(humidity >39) {   // 좋음
+      return colors.blue[500];
+    } else {                    // 건조
       return colors.brown[500];
     }
   }

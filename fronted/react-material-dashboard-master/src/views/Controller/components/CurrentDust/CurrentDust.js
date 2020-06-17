@@ -54,16 +54,18 @@ const CurrentDust = props => {
   useInterval(() => { 
     axios.get("http://localhost:8080/SpringMongo2/selectTest")
     .then(response => {
-      setDustData(response.data[response.data.length-1]) //response.data[0])
+      setDustData(response.data[0]) //(response.data[response.data.length-1]) 
     });
   }, 3000)
 
   const pickColor = (dustDensity) => {
-    if(dustDensity > 100) {
-      return colors.red[500];
-    } else if(dustDensity >50) {
+    if(dustDensity > 150) {     //  매우나쁨
+      return colors.red[500];   
+    } else if(dustDensity > 80) { // 나쁨
+      return colors.orange[500];
+    } else if(dustDensity > 50) { // 보통
       return colors.green[500];
-    } else {
+    } else {  // 좋음
       return colors.blue[500];
     }
   }

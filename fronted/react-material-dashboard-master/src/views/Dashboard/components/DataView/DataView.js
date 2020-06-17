@@ -23,7 +23,7 @@ const DataView = (props) => {
       .then((res) => res.json())
       .then(
         (result) => {
-          setEnvironment(result[result.length-1]);
+          setEnvironment(result[0]);//(result[result.length-1]);
         },
         // 주의: 컴포넌트의 실제 버그에서 발생하는 예외사항들을 넘기지 않도록
         // 에러를 catch() 블록(block)에서 처리하기보다는

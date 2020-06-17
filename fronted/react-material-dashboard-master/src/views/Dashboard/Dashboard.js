@@ -21,32 +21,38 @@ const Dashboard = () => {
       >
         <Grid
           item
-          lg={6}
+          lg={8}
+          xs={12}
+        >
+          <CurrentEnergy />
+        </Grid>
+
+        <Grid
+          item
+          lg={4}
           md={12}
           xs={12}
         >
           <DataView />
         </Grid>
+        
         <Grid
           item
-          lg={6}
+          lg={8}
+          xs={12}
+        >
+          <CurrentEnvironment />
+        </Grid>
+
+        <Grid
+          item
+          lg={4}
           md={12}
           xs={12}
         >
           <PolarView />
         </Grid>
-        <Grid
-          item
-          xs={12}
-        >
-          <CurrentEnergy />
-        </Grid>
-        <Grid
-          item
-          xs={12}
-        >
-          <CurrentEnvironment />
-        </Grid>
+
       </Grid>
     </div>
   );

@@ -28,9 +28,9 @@ const Profile = props => {
   const classes = useStyles();
 
   const user = {
-    name: 'DBMS',
-    avatar: '/images/avatars/avatar_12.jpg',
-    bio: 'Team members'
+    name: 'HDMS',
+    avatar: '/images/avatars/smart_home.jpg',
+    bio: 'Team'//'Team members'
   };
 
   return (
@@ -38,21 +38,21 @@ const Profile = props => {
       {...rest}
       className={clsx(classes.root, className)}
     >
-      {/* <Avatar
+      <Avatar variant="square" className={classes.square}
         alt="Person"
         className={classes.avatar}
         component={RouterLink}
         src={user.avatar}
         to="/settings" 
-      /> */}
-      <AvatarGroup max={5}>
+      />
+      {/* <AvatarGroup max={5}>
         <Avatar alt="Remy Sharp" src="/images/avatars/choiyaeman.jpg" />
         <Avatar alt="Travis Howard" src="/images/avatars/avatar_2.png" />
         <Avatar alt="Cindy Baker" src="/images/avatars/avatar_3.png" />
         <Avatar alt="Agnes Walker" src="/images/avatars/avatar_4.png" />
         <Avatar alt="Trevor Henderson" src="/images/avatars/avatar_5.png.jpg" />
       />
-      </AvatarGroup>
+      </AvatarGroup> */}
 
       <Typography
         className={classes.name}
