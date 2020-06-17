@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2)
   },
   divider: {
-    margin: theme.spacing(4, 0)
+    margin: theme.spacing(8, 0)
   },
   nav: {
     marginBottom: theme.spacing(2)
@@ -62,8 +62,8 @@ const Sidebar = props => {
   useInterval(() => {
     axios.get("http://localhost:8080/SpringMongo2/selectTest")
     .then(response => {
-      setDiscomfort(response.data[response.data.length-1]);
-      setDustValue(response.data[response.data.length-1]);
+      setDiscomfort(response.data[0]);//(response.data[response.data.length-1]);
+      setDustValue(response.data[0]);//(response.data[response.data.length-1]);
     });
   }, 3000)
 
@@ -76,40 +76,40 @@ const Sidebar = props => {
     } else if(discomfortIndex > 75) {
       return colors.orange[500];
     } else if(discomfortIndex > 70) {
-      return colors.yellow[500];
-    } else{
       return colors.green[500];
+    } else{
+      return colors.blue[500];
     }
   }
   
   const dustColor = (dustIndex) => {
-    if(dustIndex > 250) {
-      return colors.red[500];
-    } else if(dustIndex > 100) {
+    if(dustIndex > 150) {     //  매우나쁨
+      return colors.red[500];   
+    } else if(dustIndex > 80) { // 나쁨
       return colors.orange[500];
-    } else if(dustIndex > 50) {
-      return colors.yellow[500];
-    } else {
+    } else if(dustIndex > 50) { // 보통
       return colors.green[500];
+    } else {  // 좋음
+      return colors.blue[500];
     }
   }
 
   const discomfortImage = () => { // 불쾌지수 이미지 나타내기
     if(discomfortIndex > 80){
-      return <img widht="48px" height="48px" src='/images/avatars/Very_bad.png'/>;
+      return <img widht="48px" height="48px" src='/images/avatars/discomfort_Very Bad.png'/>;
     } else if (discomfortIndex > 75){
-      return <img widht="48px" height="48px" src='/images/avatars/Bad.png'/>;
+      return <img widht="48px" height="48px" src='/images/avatars/discomfort_Bad.png'/>;
     } else if (discomfortIndex > 70){
-      return <img widht="48px" height="48px" src='/images/avatars/usually.png'/>;
+      return <img widht="48px" height="48px" src='/images/avatars/discomfort_usually.png'/>;
     } else {
-      return <img widht="48px" height="48px" src='/images/avatars/good.png'/>;
+      return <img widht="48px" height="48px" src='/images/avatars/discomfort_Good.png'/>;
     }
   };
 
   const dustImage = () => { // 미세먼지 이미지 나타내기
-    if(dustIndex > 250){
+    if(dustIndex > 150){
       return <img widht="48px" height="48px" src='/images/avatars/dust_Very Bad.png'/>;
-    } else if (dustIndex > 100){
+    } else if (dustIndex > 80){
       return <img widht="48px" height="48px" src='/images/avatars/dust_Bad.png'/>;
     } else if (dustIndex > 50){
       return <img widht="48px" height="48px" src='/images/avatars/dust_usually.png'/>;

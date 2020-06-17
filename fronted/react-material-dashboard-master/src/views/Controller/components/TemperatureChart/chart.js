@@ -52,8 +52,8 @@ export const options = {  //이름으로 export
       {
         ticks: {
           fontColor: palette.text.secondary,
-          beginAtZero: true, // 0부터 시작하게 합니다.         
-          //min: 0
+          //beginAtZero: true, // 0부터 시작하게 합니다.         
+          //min: 0,
           autoSkip: true,
           maxTicksLimit: 20
         },

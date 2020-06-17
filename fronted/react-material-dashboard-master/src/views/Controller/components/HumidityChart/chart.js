@@ -52,7 +52,7 @@ export const options = {  //이름으로 export
       {
         ticks: {
           fontColor: palette.text.secondary,
-          beginAtZero: true,
+          //beginAtZero: true,
           autoSkip: true,
           maxTicksLimit: 20
         },

@@ -132,6 +132,7 @@ export default function CustomizedSwitches() {
     handleLedSwitch(null,currentAllSwitchValue);
   }
 
+  // flex-grow CSS property 는 flex-item 요소가, flex-container 요소 내부에서 할당 가능한 공간의 정도를 선언
   return (
     <Card>
       <CardHeader
