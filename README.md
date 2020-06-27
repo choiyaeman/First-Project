@@ -1,5 +1,5 @@
 # Smart HOME 프로젝트
-메타빌드 제출용 프로젝트
+Smart HOME
 
 # 프로젝트명
 HDMS(Home Data Management Service)
