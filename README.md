@@ -20,10 +20,11 @@ Controller에서 Led, Moter switch on/off 이벤트 발생 시 라즈베리파�
 공통적으로 불쾌지수 및 미세먼지 실시간 상태 Visaulizing
 
 ## Functions
+- 불쾌지수 및 미세먼지 상태 Visualizing
 - 수도, 전기 사용량 Visaulizing
 - 실내 온습도, 미세먼지, 전기, 수도 실시간 Visualizing
 - 불쾌지수, 미세먼지 상태 실시간 Visaulizing
-- Led, Moter 자동, 수동 Controller
+- Led, Moter 전체, 수동 Controller
 
 ## Install & Test
 For frontend
