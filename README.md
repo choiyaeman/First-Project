@@ -1,4 +1,4 @@
-# Smart HOME 프로젝트
+# 프로젝트 
 Smart HOME
 
 # 프로젝트명
