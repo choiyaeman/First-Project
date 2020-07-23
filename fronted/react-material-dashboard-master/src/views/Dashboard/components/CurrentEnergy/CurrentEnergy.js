@@ -17,7 +17,7 @@ import {
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-import { data, options } from './chart';
+import { options } from './chart';
 import axios from 'axios';
 import {useInterval} from 'common/utils';
 
@@ -40,44 +40,63 @@ const CurrentEnergy = props => {
 
   const classes = useStyles();
 
-const [chartData, setChartData] = useState([]);
-const [chartData1, setChartData1 ] = useState([]);
-const [labelData, setLabelData] = useState([]);
+const data = {
+  labels: ['21:56','22:10','23:34','23:48','24:02','24:16','24:30','24:44','24:58','25:12'],
+  datasets: [
+    {
+      label:"수도",
+      fill: false,
+      borderColor:colors.indigo[600],
+      data:[20, 10, 40, 70, 30, 20, 10, 40, 70, 30]
+    },
+    {
+      label:"전기",
+      fill: false,
+      borderColor:colors.yellow[400],
+      data:[80, 40, 10, 70, 20, 30, 10, 70, 40, 10]
+    }
+  ]
+};
+const newData = [];
+newData.push(getRandomInt(10,80));
+// const [chartData, setChartData] = useState([]);
+// const [chartData1, setChartData1 ] = useState([]);
+// const [labelData, setLabelData] = useState([]);
 
-//[{"id":"5ece13c4ea2ecf898165c6f5","dustDensity":"31.25","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6f6","dustDensity":"16.25","date":"21:46","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c6f7","dustDensity":"11.25","date":"21:46","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c6f8","dustDensity":"42.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6f9","dustDensity":"36.25","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fa","dustDensity":"35.00","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fb","dustDensity":"27.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fc","dustDensity":"27.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fd","dustDensity":"41.25","date":"21:47","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fe","dustDensity":"35.00","date":"21:47","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6ff","dustDensity":"28.75","date":"21:47","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c700","dustDensity":"15.00","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c701","dustDensity":"13.75","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c702","dustDensity":"20.00","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c703","dustDensity":"32.50","date":"21:47","temperature":"22.20","humidity":"49.20"},{"id":"5ece13c4ea2ecf898165c704","dustDensity":"31.25","date":"21:47","temperature":"22.20","humidity":"49.30"},{"id":"5ece13c4ea2ecf898165c705","dustDensity":"26.25","date":"21:47","temperature":"22.20","humidity":"49.50"},{"id":"5ece13c4ea2ecf898165c706","dustDensity":"26.25","date":"21:47","temperature":"22.20","humidity":"49.60"}]
+// //[{"id":"5ece13c4ea2ecf898165c6f5","dustDensity":"31.25","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6f6","dustDensity":"16.25","date":"21:46","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c6f7","dustDensity":"11.25","date":"21:46","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c6f8","dustDensity":"42.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6f9","dustDensity":"36.25","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fa","dustDensity":"35.00","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fb","dustDensity":"27.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fc","dustDensity":"27.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fd","dustDensity":"41.25","date":"21:47","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fe","dustDensity":"35.00","date":"21:47","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6ff","dustDensity":"28.75","date":"21:47","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c700","dustDensity":"15.00","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c701","dustDensity":"13.75","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c702","dustDensity":"20.00","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c703","dustDensity":"32.50","date":"21:47","temperature":"22.20","humidity":"49.20"},{"id":"5ece13c4ea2ecf898165c704","dustDensity":"31.25","date":"21:47","temperature":"22.20","humidity":"49.30"},{"id":"5ece13c4ea2ecf898165c705","dustDensity":"26.25","date":"21:47","temperature":"22.20","humidity":"49.50"},{"id":"5ece13c4ea2ecf898165c706","dustDensity":"26.25","date":"21:47","temperature":"22.20","humidity":"49.60"}]
 
-useInterval(() => {
-    axios.get("http://localhost:8080/SpringMongo2/selectTest?limit=100")
-    // date => 밀리초까지 표현(12:47:50.456 yyyy-MM-dd HH:mm:ss.SSS) or timestamp
-    .then(response => {
-      // const newdata = response.data.map( (row,index) => {
-      //   //{"id":"5ece13c4ea2ecf898165c6f5","dustDensity":"31.25","date":"21:46","temperature":"22.20","humidity":"48.90"}
-      //   // 0,1,2   index가 차례대로 나오기위해 ..
+// useInterval(() => {
+//     axios.get("http://localhost:8080/SpringMongo2/selectTest?limit=100")
+//     // date => 밀리초까지 표현(12:47:50.456 yyyy-MM-dd HH:mm:ss.SSS) or timestamp
+//     .then(response => {
+//       // const newdata = response.data.map( (row,index) => {
+//       //   //{"id":"5ece13c4ea2ecf898165c6f5","dustDensity":"31.25","date":"21:46","temperature":"22.20","humidity":"48.90"}
+//       //   // 0,1,2   index가 차례대로 나오기위해 ..
         
-      //   return {
-      //     x:row.date+":"+index,
-      //     y:parseInt(row.temperature)
-      //   }
-      // });
-      const newChartData = [];
-      const newChartData1 = [];
-      const newLabelData = [];
+//       //   return {
+//       //     x:row.date+":"+index,
+//       //     y:parseInt(row.temperature)
+//       //   }
+//       // });
+//       const newChartData = [];
+//       const newChartData1 = [];
+//       const newLabelData = [];
 
-      response.data.slice(0,50).forEach((row,index) => {
-        newLabelData.push(row.time);
-        newChartData.push(row.waterFlow);
-        newChartData1.push(row.wtime);
-       // newChartData.push(getRandomInt(10,35));
-      });
+//       response.data.slice(0,50).forEach((row,index) => {
+//         newLabelData.push(row.time);
+//         newChartData.push(row.waterFlow);
+//         newChartData1.push(row.wtime);
+//        // newChartData.push(getRandomInt(10,35));
+//       });
 
-      setChartData(newChartData.reverse());
-      setChartData1(newChartData1.reverse());
-      setLabelData(newLabelData.reverse());
-      // setChartData(newChartData);
-      // setChartData1(newChartData1);
-      // setLabelData(newLabelData);
-    });
-}, 3000)
+//       setChartData(newChartData.reverse());
+//       setChartData1(newChartData1.reverse());
+//       setLabelData(newLabelData.reverse());
+//       // setChartData(newChartData);
+//       // setChartData1(newChartData1);
+//       // setLabelData(newLabelData);
+//     });
+// }, 3000)
 
   return (
     <Card
@@ -103,23 +122,26 @@ useInterval(() => {
       
         <div className={classes.chartContainer}>
           <Line
-            data = {{
-              labels: labelData,
-              datasets: [
-                {
-                  label: '수도',
-                  fill:false,
-                  borderColor:colors.indigo[600],
-                  data: chartData
-                },
-                {
-                    label: '전기',
-                    fill:false,
-                    borderColor:colors.yellow[400],
-                    data: chartData1
-                }
-              ]
-            }}
+            // data = {{
+            //   //labels: labelData,
+            //   datasets: [
+            //     {
+            //       label: '수도',
+            //       fill:false,
+            //       borderColor:colors.indigo[600],
+            //       //data: chartData
+            //       data: waterData
+            //     },
+            //     {
+            //         label: '전기',
+            //         fill:false,
+            //         borderColor:colors.yellow[400],
+            //         //data: chartData1
+            //         data: wtimeData
+            //     }
+            //   ]
+            // }}
+            data={data}
             options={options}
           />
         </div>

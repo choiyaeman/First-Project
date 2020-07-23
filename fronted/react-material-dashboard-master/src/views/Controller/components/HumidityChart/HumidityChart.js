@@ -42,28 +42,41 @@ const HumidityChart = props => {
 
   const classes = useStyles();
 
-const [chartData, setChartData] = useState([]);
-const [labelData, setLabelData] = useState([]);
+// const [chartData, setChartData] = useState([]);
+// const [labelData, setLabelData] = useState([]);
 
-useInterval(() => {
-    axios.get("http://localhost:8080/SpringMongo2/selectTest?limit=100")
-    .then(response => {
+// useInterval(() => {
+//     axios.get("http://localhost:8080/SpringMongo2/selectTest?limit=100")
+//     .then(response => {
       
-      const newChartData = [];
-      const newLabelData = [];
+//       const newChartData = [];
+//       const newLabelData = [];
 
-      response.data.slice(0,50).forEach((row, index) => {
-        newLabelData.push(row.time);
-        newChartData.push(row.humidity);
-        //newChartData.push(getRandomInt(10,90));
-      });
-        // setChartData(newChartData);
-        // setLabelData(newLabelData);
+//       response.data.slice(0,50).forEach((row, index) => {
+//         newLabelData.push(row.time);
+//         newChartData.push(row.humidity);
+//         //newChartData.push(getRandomInt(10,90));
+//       });
+//         // setChartData(newChartData);
+//         // setLabelData(newLabelData);
         
-        setChartData(newChartData.reverse());
-        setLabelData(newLabelData.reverse());
-    });
-}, 3000)
+//         setChartData(newChartData.reverse());
+//         setLabelData(newLabelData.reverse());
+//     });
+// }, 3000)
+
+  const data = {
+    labels: ['21:56','22:10','23:34','23:48','24:02','24:16','24:30','24:44','24:58','25:12'],
+    datasets: [
+      {
+        label: "Room Humidity",
+        fill: false,
+        backgroundColor: colors.green[400],
+        borderColor: colors.green[400],
+        data:[48.90, 43.20, 36.20, 54.20, 75.20, 62.29, 38.20, 34.10, 29.20, 41.20]
+      }
+    ]
+  }
 
   return (
     <Card
@@ -86,18 +99,19 @@ useInterval(() => {
       <CardContent>
         <div className={classes.chartContainer}>
           <Line
-            data = {{
-              labels: labelData,
-              datasets: [
-                {
-                  label: 'Room Humidity',
-                  fill: false,
-                  backgroundColor: colors.green[400],
-                  borderColor: colors.green[400],//'#42a5f5',//palette.primary.main,
-                  data: chartData
-                }
-              ]
-            }}
+            // data = {{
+            //   labels: labelData,
+            //   datasets: [
+            //     {
+            //       label: 'Room Humidity',
+            //       fill: false,
+            //       backgroundColor: colors.green[400],
+            //       borderColor: colors.green[400],//'#42a5f5',//palette.primary.main,
+            //       data: chartData
+            //     }
+            //   ]
+            // }}
+            data={data}
             options={options}
           />
         </div>

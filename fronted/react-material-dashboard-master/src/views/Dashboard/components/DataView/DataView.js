@@ -14,32 +14,50 @@ const useStyles = makeStyles(() => ({
 
 const DataView = (props) => {
 
-  const [environment, setEnvironment] = useState(""); //useState([]);
+//  const [environment, setEnvironment] = useState(""); //useState([]);
 
   const classes = useStyles();
 
-  useInterval(() => {
-    fetch("http://localhost:8080/SpringMongo2/selectTest")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setEnvironment(result[0]);//(result[result.length-1]);
-        },
-        // 주의: 컴포넌트의 실제 버그에서 발생하는 예외사항들을 넘기지 않도록
-        // 에러를 catch() 블록(block)에서 처리하기보다는
-        // 이 부분에서 처리하는 것이 중요합니다.
-        (error) => {
-          setEnvironment("");//([]);
-        }
-      );
-  }, 3000);
+  // useInterval(() => {
+  //   fetch("http://localhost:8080/SpringMongo2/selectTest")
+  //     .then((res) => res.json())
+  //     .then(
+  //       (result) => {
+  //         setEnvironment(result[0]);//(result[result.length-1]);
+  //       },
+  //       // 주의: 컴포넌트의 실제 버그에서 발생하는 예외사항들을 넘기지 않도록
+  //       // 에러를 catch() 블록(block)에서 처리하기보다는
+  //       // 이 부분에서 처리하는 것이 중요합니다.
+  //       (error) => {
+  //         setEnvironment("");//([]);
+  //       }
+  //     );
+  // }, 3000);
 
-  // let sumWaterFlow = 0;
-  // let sumWtime = 0;
-  // for (let i = 0; i < environment.length; i++) {
-  //   sumWaterFlow += parseFloat(environment[i]["waterFlow"]); //유량
-  //   sumWtime += parseFloat(environment[i]["wtime"]); // 전력
-  // }
+  const data = {
+    datasets: [
+      {
+        label:"수도",
+        fill: false,
+        borderColor:colors.indigo[600],
+        data:[20, 10, 40, 70, 30, 20, 10, 40, 70, 30]
+      },
+      {
+        label:"전기",
+        fill: false,
+        borderColor:colors.yellow[400],
+        data:[80, 40, 10, 70, 20, 30, 10, 70, 40, 10]
+      }
+    ]
+  }
+  let sumWaterFlow = 0;
+  let sumWtime = 0;
+  for (let i = 0; i < data.length; i++) {
+    // sumWaterFlow += parseFloat(data[i]["waterFlow"]); //유량
+    // sumWtime += parseFloat(data[i]["wtime"]); // 전력
+    sumWaterFlow += parseFloat(data[i]); //유량
+    sumWtime += parseFloat(data[i]); // 전력
+  }
 
   const expData1 = {
     labels: ["수도","전기"],
@@ -47,8 +65,8 @@ const DataView = (props) => {
       {
         labels: ["수도","전기"],
         data: [     
-          parseFloat(environment["waterFlow"]),
-          parseFloat(environment["wtime"])
+          parseFloat(sumWaterFlow),
+          parseFloat(sumWtime)
         ],
         borderWidth: 0,
         hoverBorderWidth: 3,

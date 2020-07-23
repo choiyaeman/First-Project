@@ -43,40 +43,51 @@ const TemperatureChart = props => {
 
   const classes = useStyles();
 
-const [chartData, setChartData] = useState([]);
-const [labelData, setLabelData] = useState([]);
+// const [chartData, setChartData] = useState([]);
+// const [labelData, setLabelData] = useState([]);
 
-//[{"id":"5ece13c4ea2ecf898165c6f5","dustDensity":"31.25","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6f6","dustDensity":"16.25","date":"21:46","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c6f7","dustDensity":"11.25","date":"21:46","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c6f8","dustDensity":"42.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6f9","dustDensity":"36.25","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fa","dustDensity":"35.00","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fb","dustDensity":"27.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fc","dustDensity":"27.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fd","dustDensity":"41.25","date":"21:47","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fe","dustDensity":"35.00","date":"21:47","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6ff","dustDensity":"28.75","date":"21:47","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c700","dustDensity":"15.00","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c701","dustDensity":"13.75","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c702","dustDensity":"20.00","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c703","dustDensity":"32.50","date":"21:47","temperature":"22.20","humidity":"49.20"},{"id":"5ece13c4ea2ecf898165c704","dustDensity":"31.25","date":"21:47","temperature":"22.20","humidity":"49.30"},{"id":"5ece13c4ea2ecf898165c705","dustDensity":"26.25","date":"21:47","temperature":"22.20","humidity":"49.50"},{"id":"5ece13c4ea2ecf898165c706","dustDensity":"26.25","date":"21:47","temperature":"22.20","humidity":"49.60"}]
+// //[{"id":"5ece13c4ea2ecf898165c6f5","dustDensity":"31.25","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6f6","dustDensity":"16.25","date":"21:46","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c6f7","dustDensity":"11.25","date":"21:46","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c6f8","dustDensity":"42.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6f9","dustDensity":"36.25","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fa","dustDensity":"35.00","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fb","dustDensity":"27.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fc","dustDensity":"27.50","date":"21:46","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fd","dustDensity":"41.25","date":"21:47","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6fe","dustDensity":"35.00","date":"21:47","temperature":"22.20","humidity":"48.90"},{"id":"5ece13c4ea2ecf898165c6ff","dustDensity":"28.75","date":"21:47","temperature":"22.20","humidity":"49.00"},{"id":"5ece13c4ea2ecf898165c700","dustDensity":"15.00","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c701","dustDensity":"13.75","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c702","dustDensity":"20.00","date":"21:47","temperature":"22.20","humidity":"49.10"},{"id":"5ece13c4ea2ecf898165c703","dustDensity":"32.50","date":"21:47","temperature":"22.20","humidity":"49.20"},{"id":"5ece13c4ea2ecf898165c704","dustDensity":"31.25","date":"21:47","temperature":"22.20","humidity":"49.30"},{"id":"5ece13c4ea2ecf898165c705","dustDensity":"26.25","date":"21:47","temperature":"22.20","humidity":"49.50"},{"id":"5ece13c4ea2ecf898165c706","dustDensity":"26.25","date":"21:47","temperature":"22.20","humidity":"49.60"}]
 
-useInterval(() => {
-    axios.get("http://localhost:8080/SpringMongo2/selectTest?limit=100")
-    // date => 밀리초까지 표현(12:47:50.456 yyyy-MM-dd HH:mm:ss.SSS) or timestamp
-    .then(response => {
-      // const newdata = response.data.map( (row,index) => {
-      //   //{"id":"5ece13c4ea2ecf898165c6f5","dustDensity":"31.25","date":"21:46","temperature":"22.20","humidity":"48.90"}
-      //   // 0,1,2   index가 차례대로 나오기위해 ..
+// useInterval(() => {
+//     axios.get("http://localhost:8080/SpringMongo2/selectTest?limit=100")
+//     // date => 밀리초까지 표현(12:47:50.456 yyyy-MM-dd HH:mm:ss.SSS) or timestamp
+//     .then(response => {
+//       // const newdata = response.data.map( (row,index) => {
+//       //   //{"id":"5ece13c4ea2ecf898165c6f5","dustDensity":"31.25","date":"21:46","temperature":"22.20","humidity":"48.90"}
+//       //   // 0,1,2   index가 차례대로 나오기위해 ..
         
-      //   return {
-      //     x:row.date+":"+index,
-      //     y:parseInt(row.temperature)
-      //   }
-      // });
-      const newChartData = [];
-      const newLabelData = [];
+//       //   return {
+//       //     x:row.date+":"+index,
+//       //     y:parseInt(row.temperature)
+//       //   }
+//       // });
+//       const newChartData = [];
+//       const newLabelData = [];
 
-      response.data.slice(0,50).forEach((row,index) => {
-        newLabelData.push(row.time);
-        newChartData.push(row.temperature);
-       // newChartData.push(getRandomInt(10,35));
-      });
+//       response.data.slice(0,50).forEach((row,index) => {
+//         newLabelData.push(row.time);
+//         newChartData.push(row.temperature);
+//        // newChartData.push(getRandomInt(10,35));
+//       });
       
-      setChartData(newChartData.reverse());
-      setLabelData(newLabelData.reverse());
-      // setChartData(newChartData);
-      // setLabelData(newLabelData);
-    });
-}, 3000)
-
+//       setChartData(newChartData.reverse());
+//       setLabelData(newLabelData.reverse());
+//       // setChartData(newChartData);
+//       // setLabelData(newLabelData);
+//     });
+// }, 3000)
+  const data = {
+    labels: ['21:56','22:10','23:34','23:48','24:02','24:16','24:30','24:44','24:58','25:12'],
+    datasets: [
+      {
+        label: "Room Temperature",
+        fill: false,
+        backgroundColor: colors.red[500],
+        borderColor: colors.red[500],
+        data:[22.20, 23.20, 26.20, 24.20, 25.20, 22.29, 28.20, 24.10, 27.20, 19.20]
+      }
+    ]
+  }
   return (
     <Card
       {...rest}
@@ -98,18 +109,19 @@ useInterval(() => {
       <CardContent>
         <div className={classes.chartContainer}>
           <Line
-            data = {{
-              labels: labelData,
-              datasets: [
-                {
-                  label: 'Room Temperature',
-                  fill:false,
-                  backgroundColor: colors.red[400],
-                  borderColor: colors.red[400],//'#42a5f5',//palette.primary.main,
-                  data: chartData
-                }
-              ]
-            }}
+            // data = {{
+            //   labels: labelData,
+            //   datasets: [
+            //     {
+            //       label: 'Room Temperature',
+            //       fill:false,
+            //       backgroundColor: colors.red[400],
+            //       borderColor: colors.red[400],//'#42a5f5',//palette.primary.main,
+            //       data: chartData
+            //     }
+            //   ]
+            // }}
+            data={data}
             options={options}
           />
         </div>
