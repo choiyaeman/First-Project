@@ -29,7 +29,7 @@ const Profile = props => {
 
   const user = {
     name: 'HDMS',
-    avatar: '/images/avatars/smart_home.jpg',
+    avatar: '/images/avatars/smart_home.png',
     bio: 'Team'//'Team members'
   };
 
